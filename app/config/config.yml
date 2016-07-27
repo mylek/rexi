@@ -29,6 +29,14 @@ framework:
     fragments:       ~
     http_method_override: true
 
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'KalkulatorKalkulatorBundle:Form:form_theme.html.twig'
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
