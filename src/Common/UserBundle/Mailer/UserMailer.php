@@ -31,6 +31,7 @@ class UserMailer {
                         ->setBody($htmlBody, 'text/html');
         
         $this->swiftMailer->send($message);
+        
     }
 
 }

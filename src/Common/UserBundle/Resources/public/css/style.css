@@ -594,18 +594,18 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   color: #fff;
 }
 .btn-primary {
-  background-color: #1ab394;
-  border-color: #1ab394;
-  color: #FFFFFF;
+    background-color: #d71920;
+    border-color: #8c0c0c;
+    color: #FFFFFF;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  background-color: #18a689;
-  border-color: #18a689;
-  color: #FFFFFF;
+    background-color: #8c0c0c;
+    border-color: #8c0c0c;
+    color: #FFFFFF;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -7477,4 +7477,11 @@ body.skin-3 {
   .welcome-message {
     display: none;
   }
+}
+
+
+.logo-rexi {
+    width: 299px;
+    height: 127px;
+    background: url('../img/logo.png');
 }

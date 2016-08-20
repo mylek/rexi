@@ -3,6 +3,9 @@
 
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
+        <div>
+            <h1 class="logo-rexi"></h1>
+        </div>
         {% if loginError is defined and loginError is not null %}
         <div class="wrapper wrapper-content animated fadeInRight alerts">
             <div class="row">
@@ -12,8 +15,8 @@
             </div>
         </div>
         {% endif %}
-        <h3>Witamy w seriwsie</h3>
-        <p>Zaloguj się aby korzystać z serwisu</p>
+        <h3>Witamy w systemie Rexi</h3>
+        <p>Podaj swoje dane aby zalogować się do systemu</p>
         <form class="m-t" method="POST" role="form" action="{{ path('_check_path') }}">
             <div class="form-group">
                 <input type="text" name="_username" class="form-control" placeholder="Username" required="">
@@ -23,6 +26,7 @@
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
             <label> <input type="checkbox" class="i-checks" name="_remember_me"> Zapamiętaj mnie</label>
+            <div><a href="{{ path('user_remember') }}"><small>Przypomnij hasło</small></a></div>
         </form>
     </div>
 </div>
