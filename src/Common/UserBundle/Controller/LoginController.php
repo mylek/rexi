@@ -73,7 +73,6 @@ class LoginController extends Controller
                 }
             }
         }
-        
         return array(
             'form' => $rememberPasswordForm->createView(),
         );

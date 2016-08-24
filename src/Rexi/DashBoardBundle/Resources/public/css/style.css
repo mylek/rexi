@@ -1,0 +1,15 @@
+.menu-fullscreen {
+	padding-top: 15px;
+}
+.smart-form section{
+    padding: 0px 14px 0px;
+}
+.smart-form > div {
+    padding-top: 14px;
+}
+.fa-danger:before {
+    content: "\f00d";
+}
+.fa-success:before {
+    content: "\f00c";
+}

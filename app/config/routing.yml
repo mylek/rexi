@@ -1,3 +1,13 @@
+rexi_dash_board:
+    resource: "@RexiDashBoardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+rexi_user:
+    resource: "@RexiUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 common_user:
     resource: "@CommonUserBundle/Resources/config/routing.yml"
     prefix:   /

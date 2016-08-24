@@ -33,4 +33,17 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     public function supportsClass($class) {
         return $class === 'Common\UserBundle\Entity\User';
     }
+    
+    public function getQueryBuilder(array $params = array()){
+        $qb = $this->createQueryBuilder('u')
+                        ->select('u.id, u.username, u.email, u.typ, i.imie, i.nazwisko, i.pesel')
+                ->leftJoin('u.info', 'i');
+            
+        if(!empty($params['orderBy'])){
+            $orderDir = !empty($params['orderDir']) ? $params['orderDir'] : NULL;
+            $qb->orderBy($params['orderBy'], $orderDir);
+        }
+            
+        return $qb;
+    }
 }

@@ -19,9 +19,9 @@ class User implements AdvancedUserInterface, \Serializable {
     private $id;
     
     /**
-     * @ORM\Column(type="string", length = 20, unique = true)
+     * @ORM\Column(type="string", length = 20, unique = true, nullable = true)
      */
-    private $username;
+    private $username = '';
     
     /**
      * @ORM\Column(type="string", length = 120, unique = true)
@@ -75,6 +75,16 @@ class User implements AdvancedUserInterface, \Serializable {
      */
     private $avatar;
     
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $typ;
+    
+   /**
+     * @ORM\OneToOne(targetEntity="Rexi\UserBundle\Entity\UserInfo")
+     */
+    protected $info;
+    
     public function __construct() {
         $this->registerDate = new \DateTime();
     }
@@ -100,6 +110,9 @@ class User implements AdvancedUserInterface, \Serializable {
     }
 
     public function getUsername() {
+        if($this->username === null)
+            $this->username = '';
+            
         return $this->username;
     }
 
@@ -153,7 +166,7 @@ class User implements AdvancedUserInterface, \Serializable {
      * @return User
      */
     public function setUsername($username)
-    {
+    {        
         $this->username = $username;
 
         return $this;
@@ -367,5 +380,59 @@ class User implements AdvancedUserInterface, \Serializable {
     public function getAvatar()
     {
         return $this->avatar;
+    }
+    
+    public function getPlainPassword() {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($plainPassword) {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * Set typ
+     *
+     * @param integer $typ
+     * @return User
+     */
+    public function setTyp($typ)
+    {
+        $this->typ = $typ;
+
+        return $this;
+    }
+
+    /**
+     * Get typ
+     *
+     * @return integer 
+     */
+    public function getTyp()
+    {
+        return $this->typ;
+    }
+
+    /**
+     * Set info
+     *
+     * @param \Rexi\UserBundle\Entity\UserInfo $info
+     * @return User
+     */
+    public function setInfo(\Rexi\UserBundle\Entity\UserInfo $info = null)
+    {
+        $this->info = $info;
+
+        return $this;
+    }
+
+    /**
+     * Get info
+     *
+     * @return \Rexi\UserBundle\Entity\UserInfo 
+     */
+    public function getInfo()
+    {
+        return $this->info;
     }
 }
