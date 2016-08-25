@@ -32,7 +32,7 @@
                         {% endif %}
                         </td>
                     <td>
-                        <a class="btn btn-primary btn-xs" href="#"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-primary btn-xs" href="{{ path('rexi_user_aktualizuj', {'id': user.id}) }}"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-danger btn-xs" href="{{ path('rexi_delete_user', {'id': user.id}) }}"><i class="glyphicon glyphicon-remove"></i></a>
                     </td>
                 </tr> 

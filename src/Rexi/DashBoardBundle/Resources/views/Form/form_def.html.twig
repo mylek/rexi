@@ -15,8 +15,8 @@
 {%- block form_row -%}
     <section>
         {{- form_label(form) -}}
-        {{- form_errors(form) -}}
         {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
     </section>
 {%- endblock form_row -%}
 
@@ -50,7 +50,11 @@
 {%- endblock form_label -%}
 
 {%- block form_widget_simple -%}
-    <label class="input">
+    {% set field_row_classes = '' %}
+    {% if errors|length > 0 %}
+        {% set field_row_classes = ' state-error' %}
+    {% endif %}
+    <label class="input {{ field_row_classes }}" >
         {%- set type = type|default('text') -%}
         <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} class="input-xs" />
     </label>
@@ -63,7 +67,7 @@
 {%- endblock button_row -%}
 
 {%- block radio_widget -%}
-    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    <input type="radio" {% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} {{ block('widget_attributes') }} />
     <i></i>
 {%- endblock radio_widget -%}
 
@@ -81,3 +85,11 @@
     {% endfor -%}
     </div>
 {%- endblock choice_widget_expanded -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        {%- for error in errors -%}
+            <div class="note note-error">{{ error.message }}</div>
+        {%- endfor -%}
+    {%- endif -%}
+{%- endblock form_errors -%}

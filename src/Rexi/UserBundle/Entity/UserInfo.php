@@ -38,6 +38,35 @@ class UserInfo {
      * @ORM\Column(type="string", length = 16)
      */
     private $pesel;
+    
+    /**
+     * @ORM\Column(type="string", length = 16)
+     */
+    private $nr_dowodu;
+    
+    /**
+     * @ORM\Column(type="string", length = 64)
+     */
+    private $imie_drugie;
+    
+    /**
+     * @ORM\Column(type="string", length = 64)
+     */
+    private $miasto;
+    /**
+     * @ORM\Column(type="string", length = 128)
+     */
+    private $ulica;
+    
+    /**
+     * @ORM\Column(type="string", length = 8)
+     */
+    private $nr_domu;
+    
+    /**
+     * @ORM\Column(type="string", length = 8)
+     */
+    private $nr_lokalu;
 
     /**
      * Get id
@@ -139,5 +168,143 @@ class UserInfo {
     public function getPesel()
     {
         return $this->pesel;
+    }
+
+    /**
+     * Set nr_dowodu
+     *
+     * @param string $nrDowodu
+     * @return UserInfo
+     */
+    public function setNrDowodu($nrDowodu)
+    {
+        $this->nr_dowodu = $nrDowodu;
+
+        return $this;
+    }
+
+    /**
+     * Get nr_dowodu
+     *
+     * @return string 
+     */
+    public function getNrDowodu()
+    {
+        return $this->nr_dowodu;
+    }
+
+    /**
+     * Set imie_drugie
+     *
+     * @param string $imieDrugie
+     * @return UserInfo
+     */
+    public function setImieDrugie($imieDrugie)
+    {
+        $this->imie_drugie = $imieDrugie;
+
+        return $this;
+    }
+
+    /**
+     * Get imie_drugie
+     *
+     * @return string 
+     */
+    public function getImieDrugie()
+    {
+        return $this->imie_drugie;
+    }
+
+    /**
+     * Set miasto
+     *
+     * @param string $miasto
+     * @return UserInfo
+     */
+    public function setMiasto($miasto)
+    {
+        $this->miasto = $miasto;
+
+        return $this;
+    }
+
+    /**
+     * Get miasto
+     *
+     * @return string 
+     */
+    public function getMiasto()
+    {
+        return $this->miasto;
+    }
+
+    /**
+     * Set ulica
+     *
+     * @param string $ulica
+     * @return UserInfo
+     */
+    public function setUlica($ulica)
+    {
+        $this->ulica = $ulica;
+
+        return $this;
+    }
+
+    /**
+     * Get ulica
+     *
+     * @return string 
+     */
+    public function getUlica()
+    {
+        return $this->ulica;
+    }
+
+    /**
+     * Set nr_domu
+     *
+     * @param integer $nrDomu
+     * @return UserInfo
+     */
+    public function setNrDomu($nrDomu)
+    {
+        $this->nr_domu = $nrDomu;
+
+        return $this;
+    }
+
+    /**
+     * Get nr_domu
+     *
+     * @return integer 
+     */
+    public function getNrDomu()
+    {
+        return $this->nr_domu;
+    }
+
+    /**
+     * Set nr_lokalu
+     *
+     * @param integer $nrLokalu
+     * @return UserInfo
+     */
+    public function setNrLokalu($nrLokalu)
+    {
+        $this->nr_lokalu = $nrLokalu;
+
+        return $this;
+    }
+
+    /**
+     * Get nr_lokalu
+     *
+     * @return integer 
+     */
+    public function getNrLokalu()
+    {
+        return $this->nr_lokalu;
     }
 }

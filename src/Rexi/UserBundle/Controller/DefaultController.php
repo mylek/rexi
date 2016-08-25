@@ -44,12 +44,40 @@ class DefaultController extends Controller
     
     /**
      * @Route(
+     *      "/aktualizuj/{id}",
+     *      name="rexi_user_aktualizuj"
+     * )
+     * @Template
+     */
+    public function aktualizujAction(Request $Request, $id){
+        $Repo = $this->getDoctrine()->getRepository('CommonUserBundle:User');
+        $user = $Repo->find($id);
+        //var_dump($user->getInfo());die;
+        if(NULL == $user){
+            throw $this->createNotFoundException('Nie znaleziono takiego uzytkownika');
+        }
+        
+        $registerUserForm = $this->createForm(new RegisterUserType()/*, $User*/);
+        $registerUserForm->get('email')->setData($user->getEmail());
+        $registerUserForm->get('username')->setData($user->getUsername());
+        $registerUserForm->get('typ')->setData($user->getTyp());
+        $registerUserForm->get("imie")->setData($user->getInfo()->getImie());
+        $registerUserForm->get("nazwisko")->setData($user->getInfo()->getNazwisko());
+        $registerUserForm->get("imie_drugie")->setData($user->getInfo()->getImieDrugie());
+        
+        return array(
+            'form' => $registerUserForm->createView()
+        );
+    }
+    
+    /**
+     * @Route(
      * "/dodaj",
      * name = "rexi_add_user"
      * )
      * @Template()
      */
-    public function dodaj(Request $Request)
+    public function dodajAction(Request $Request)
     {
         $User = new User();
         $UserInfo = new UserInfo();
@@ -88,6 +116,14 @@ class DefaultController extends Controller
                     $UserInfo->setImie($postData['imie']);
                     $UserInfo->setNazwisko($postData['nazwisko']);
                     $UserInfo->setPesel($postData['pesel']);
+                    
+                    $UserInfo->setImieDrugie($postData['imie_drugie']);
+                    $UserInfo->setNrDowodu($postData['nr_dowodu']);
+                    $UserInfo->setMiasto($postData['miasto']);
+                    $UserInfo->setUlica($postData['ulica']);
+                    $UserInfo->setNrDomu($postData['nr_domu']);
+                    $UserInfo->setNrLokalu($postData['nr_lokalu']);
+                    
                     $em->persist($UserInfo);
                     $em->flush();
                     

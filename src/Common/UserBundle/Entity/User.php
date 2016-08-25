@@ -81,7 +81,7 @@ class User implements AdvancedUserInterface, \Serializable {
     private $typ;
     
    /**
-     * @ORM\OneToOne(targetEntity="Rexi\UserBundle\Entity\UserInfo")
+     * @ORM\OneToOne(targetEntity="Rexi\UserBundle\Entity\UserInfo", mappedBy="id_user")
      */
     protected $info;
     
