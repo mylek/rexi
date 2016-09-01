@@ -58,9 +58,7 @@ class RegisterUserType extends AbstractType{
                         '0' => 'Pracownik',
                         '1' => 'Klient',
                     ),
-                    'attr' => array('disabled' => 'disabled', 'class' => 'star')
-                    ,
-                    'data' => 0,
+                    'attr' => array('disabled' => 'disabled', 'class' => 'star'),
                     'expanded' => true,
                 ))
             ->add('imie', 'text', array(

@@ -6,7 +6,7 @@
         {% else %}
             <li>
         {% endif %}
-            <a href="{{ path(menu_row.submenu|first) }}">
+            <a href="{% if menu_row.submenu|length > 1 %}#{% else %}{{ path(menu_row.submenu|first) }}{% endif %}">
                 <i class="{{ menu_row.class }}"></i> 
                 <span class="nav-label">{{ name }}</span>
                 {% if menu_row.submenu|length > 1 %}

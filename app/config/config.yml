@@ -81,3 +81,7 @@ twig:
     form:
         resources:
             - 'RexiDashBoardBundle:Form:form_def.html.twig'
+
+knp_paginator:
+    template:
+        sortable: RexiDashBoardBundle:Pagination:sortable_link.html.twig

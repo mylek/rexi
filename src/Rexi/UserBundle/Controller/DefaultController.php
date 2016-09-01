@@ -27,18 +27,22 @@ class DefaultController extends Controller
      * )
      * @Template()
      */
-    public function indexAction($page)
+    public function indexAction(Request $request, $page)
     {
         $Repo = $this->getDoctrine()->getRepository('CommonUserBundle:User');
-        $qb = $Repo->getQueryBuilder(array(
-            'orderBy' => 'u.username'
-        ));
+        $queryParams = array(
+            'orderBy' => 'u.username',
+            'userTyp' => $request->query->get('userTyp'),
+            'search' => $request->query->get('search'),
+        );
+        $qb = $Repo->getQueryBuilder($queryParams);
         
         $paginator = $this->get('knp_paginator');
         $users = $paginator->paginate($qb, $page, $this->limit);
         
         return array(
-            "users" => $users
+            "users" => $users,
+            "queryParams" => $queryParams,
         );
     }
     
@@ -51,8 +55,9 @@ class DefaultController extends Controller
      */
     public function aktualizujAction(Request $Request, $id){
         $Repo = $this->getDoctrine()->getRepository('CommonUserBundle:User');
+        $Repo2 = $this->getDoctrine()->getRepository('RexiUserBundle:UserInfo');
         $user = $Repo->find($id);
-        //var_dump($user->getInfo());die;
+        $userInfo = $Repo2->findBy(array('id_user' => $id))[0];
         if(NULL == $user){
             throw $this->createNotFoundException('Nie znaleziono takiego uzytkownika');
         }
@@ -61,9 +66,53 @@ class DefaultController extends Controller
         $registerUserForm->get('email')->setData($user->getEmail());
         $registerUserForm->get('username')->setData($user->getUsername());
         $registerUserForm->get('typ')->setData($user->getTyp());
-        $registerUserForm->get("imie")->setData($user->getInfo()->getImie());
-        $registerUserForm->get("nazwisko")->setData($user->getInfo()->getNazwisko());
-        $registerUserForm->get("imie_drugie")->setData($user->getInfo()->getImieDrugie());
+        if($user->getInfo() !== null){
+            $registerUserForm->get("imie")->setData($user->getInfo()->getImie());
+            $registerUserForm->get("nazwisko")->setData($user->getInfo()->getNazwisko());
+            $registerUserForm->get("imie_drugie")->setData($user->getInfo()->getImieDrugie());
+            $registerUserForm->get("pesel")->setData($user->getInfo()->getPesel());
+            $registerUserForm->get("nr_dowodu")->setData($user->getInfo()->getNrDowodu());
+            $registerUserForm->get("miasto")->setData($user->getInfo()->getMiasto());
+            $registerUserForm->get("ulica")->setData($user->getInfo()->getUlica());
+            $registerUserForm->get("nr_domu")->setData($user->getInfo()->getNrDomu());
+            $registerUserForm->get("nr_lokalu")->setData($user->getInfo()->getNrLokalu());
+        }
+        
+        $registerUserForm->remove('plainPassword');
+        
+        if($Request->isMethod('POST')){
+            $Session = $this->get('session');
+            
+            $registerUserForm->handleRequest($Request);
+            
+            if($registerUserForm->isValid()){
+                $postData = $Request->request->all()['userRegister'];
+                
+                $user->setTyp($postData['typ']);
+                if($user->getTyp() == 1) {
+                    $user->setRoles(array('ROLE_USER'));
+                } else {
+                    $user->setRoles(array('ROLE_ADMIN'));
+                }
+                
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+                
+                if(null !== $userInfo) {
+                    $userInfo->setPesel($postData['pesel']);
+                    $userInfo->setImieDrugie($postData['imie_drugie']);
+                    $userInfo->setNrDowodu($postData['nr_dowodu']);
+                    $userInfo->setMiasto($postData['miasto']);
+                    $userInfo->setUlica($postData['ulica']);
+                    $userInfo->setNrDomu($postData['nr_domu']);
+                    $userInfo->setNrLokalu($postData['nr_lokalu']);
+                    
+                    $em->persist($userInfo);
+                    $em->flush();
+                }
+            }
+        }
         
         return array(
             'form' => $registerUserForm->createView()
@@ -82,6 +131,7 @@ class DefaultController extends Controller
         $User = new User();
         $UserInfo = new UserInfo();
         $registerUserForm = $this->createForm(new RegisterUserType()/*, $User*/);
+        $registerUserForm->get('typ')->setData(0);
         
         if($Request->isMethod('POST')){
             $Session = $this->get('session');
@@ -131,13 +181,13 @@ class DefaultController extends Controller
                     $em->persist($User);
                     $em->flush();
                     
-                    $Session->getFlashBag()->add('success', 'Uzytkownik został zapisany');
+                    $Session->getFlashBag()->add('success', 'Uzytkownik zostaĹ‚ zapisany');
                 } catch (Exception $exc) {
                     $this->get('session')->getFlashBag()->add('danger', $exc->getMessage());
                 }
             }
             else {
-                $Session->getFlashBag()->add('danger', 'Popraw błędy formularza!');
+                $Session->getFlashBag()->add('danger', 'Popraw bĹ‚Ä™dy formularza!');
             }
         }
         
@@ -161,7 +211,7 @@ class DefaultController extends Controller
         $em->remove($User);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('success', 'Poprawnie usunięto post wraz ze wszystkimi komentarzami');
+        $this->get('session')->getFlashBag()->add('success', 'Poprawnie usuniÄ™to post wraz ze wszystkimi komentarzami');
         return $this->redirect($this->generateUrl('rexi_user_list'));
     }
 }

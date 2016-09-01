@@ -100,8 +100,8 @@
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
 					
-					<a href="javascript:void(0);">
-						<img src="{{asset('bundles/rexidashboard/img/avatars/sunny.png')}}" alt="me" class="online" /> 
+					<a href="{{ path('rexi_user_profil') }}">
+						<img src="{{asset(app.user.avatar)}}" alt="me" class="online" /> 
 						<span>
                                                     {{ app.user.username}}
 						</span>

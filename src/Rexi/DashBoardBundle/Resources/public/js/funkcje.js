@@ -1,7 +1,10 @@
 $(document).ready(function(){
-    ukryj_rejestracja($('#userRegister_typ input').val())
+    ukryj_rejestracja($('#userRegister_typ input:checked').val());
     $('#userRegister_typ input').on('click', function(){
         ukryj_rejestracja($(this).val());
+    });
+    $('.jq-filter-user-list').on('change', function(){
+        $('.jq-filter-user-form').submit();
     });
 });
 

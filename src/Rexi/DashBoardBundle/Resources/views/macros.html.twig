@@ -1,4 +1,5 @@
 {% macro widgetBlock(title, titleSmall, content) %}
+    {% if title is not empty  %}
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
             <h1 class="page-title txt-color-blueDark">
@@ -7,6 +8,7 @@
             </h1>
         </div>
     </div>
+    {% endif %}
             
     <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
