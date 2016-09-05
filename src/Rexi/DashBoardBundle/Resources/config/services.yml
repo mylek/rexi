@@ -1,0 +1,6 @@
+services:
+    rexi_dashboard.twig.extension.rexi:
+        class: Rexi\DashBoardBundle\Twig\Extension\RexiExtension
+        arguments: ["@doctrine", "@security.context"]
+        tags:
+            - { name: twig.extension }

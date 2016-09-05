@@ -19,7 +19,10 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Common\UserBundle\CommonUserBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Rexi\UserBundle\RexiUserBundle(),
+            new Rexi\DashBoardBundle\RexiDashBoardBundle(),
+            new Rexi\BlocksValuationBundle\RexiBlocksValuationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

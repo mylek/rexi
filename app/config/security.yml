@@ -26,15 +26,15 @@ security:
             form_login:
                 check_path: _check_path
                 login_path: user_login
-                default_target_path: kal_produkty_lista
+                default_target_path: rexi_dashboard
             logout:
                 path: _logout
-                target: kal_login
+                target: user_login
             remember_me:
                 key: '%secret%'
                 lifetime: 604800 # 1 week in seconds
                 path: /
                 domain: ~
     access_control:
-        - { path: ^/kalkulator, roles: ROLE_USER }
+        - { path: ^/panel, roles: ROLE_USER }
             
