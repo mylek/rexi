@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Rexi\UserBundle\RexiUserBundle(),
             new Rexi\DashBoardBundle\RexiDashBoardBundle(),
+            new Rexi\BlocksValuationBundle\RexiBlocksValuationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

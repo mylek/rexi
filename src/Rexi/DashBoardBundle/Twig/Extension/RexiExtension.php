@@ -53,6 +53,13 @@ class RexiExtension extends \Twig_Extension {
                     'Lista użytkowników' => 'rexi_user_list',
                     'Dodaj użytkownika' => 'rexi_add_user'
                 )
+            ),
+            'Bloki wycen' => array(
+                'class' => 'fa fa-sitemap',
+                'submenu' => array(
+                    'Lista bloków' => 'rexi_user_list',
+                    'Dodaj blok' => 'rexi_add_user'
+                )
             )
         );
 

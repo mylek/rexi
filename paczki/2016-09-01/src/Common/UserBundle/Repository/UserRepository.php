@@ -44,7 +44,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             $qb->orderBy($params['orderBy'], $orderDir);
         }
         
-        if($params['userTyp'] != -1){
+        if(!empty($params['userTyp']) && $params['userTyp'] != -1){
             $qb->andWhere('u.typ = :typ')->setParameter('typ', $params['userTyp']);
         }
         
