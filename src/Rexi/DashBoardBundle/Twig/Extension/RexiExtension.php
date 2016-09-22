@@ -57,8 +57,8 @@ class RexiExtension extends \Twig_Extension {
             'Bloki wycen' => array(
                 'class' => 'fa fa-sitemap',
                 'submenu' => array(
-                    'Lista bloków' => 'rexi_user_list',
-                    'Dodaj blok' => 'rexi_add_user'
+                    'Lista bloków' => 'rexi_bloki_wycen_list',
+                    'Dodaj blok' => 'rexi_bloki_wycen_add'
                 )
             )
         );

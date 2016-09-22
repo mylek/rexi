@@ -1,0 +1,4 @@
+services:
+    bloki_manager:
+        class: Rexi\BlocksValuationBundle\Manager\BlokiManager
+        arguments: [@doctrine]

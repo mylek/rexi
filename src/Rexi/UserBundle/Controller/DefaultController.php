@@ -187,7 +187,7 @@ class DefaultController extends Controller
                 }
             }
             else {
-                $Session->getFlashBag()->add('danger', 'Popraw bĹ‚Ä™dy formularza!');
+                $Session->getFlashBag()->add('danger', 'Popraw błędy formularza!');
             }
         }
         

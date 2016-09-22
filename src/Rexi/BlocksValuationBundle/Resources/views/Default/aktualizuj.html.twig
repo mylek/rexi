@@ -1,0 +1,136 @@
+{% extends "RexiDashBoardBundle::base.html.twig" %}
+{% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
+
+{% form_theme form _self %}
+
+{% set blok %}
+    {{ form_start(form) }}
+        {{ form_widget(form._token) }}
+        <div>
+            <fieldset>
+                <section>
+                    {{ form_label(form.nazwa, null, {'label_attr': {'class': ''}}) }}
+
+                    <label class="input ">
+                        {{ form_widget(form.nazwa, {'attr': {'class': 'input-xs'}}) }}
+                        {{ form_errors(form.nazwa) }}
+                    </label>
+                </section>
+                <section>
+                    {{ form_label(form.id_rodzica, null, {'label_attr': {'class': ''}}) }}
+
+                    <label class="input ">
+                        {{ form_widget(form.id_rodzica, {'attr': {'class': 'select2 select2-offscreen'}}) }}
+                        {{ form_errors(form.id_rodzica) }}
+                    </label>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col col-1">
+                            {{ form_label(form.kolor, null, {'label_attr': {'class': ''}}) }}
+
+                            <label class="input ">
+                                {{ form_widget(form.kolor, {'attr': {'class': 'input-xs'}}) }}
+                                {{ form_errors(form.kolor) }}
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    {{ form_label(form.typ, null, {'label_attr': {'class': ''}}) }}
+
+                    <label class="input ">
+                        {{ form_widget(form.typ, {'attr': {'class': 'input-xs'}}) }}
+                        {{ form_errors(form.typ) }}
+                    </label>
+                </section>
+            </fieldset>
+                <table class="table table-bordered tabela-wycen" id="jq-tabela-wycen-produkty" style="width: 50%; margin: 20px auto; display: none;">
+                    <thead>
+                        <tr>
+                            <th width="40%">Dokumenty</th>
+                            <th width="35%">Cena dla klienta</th>
+                            <th width="15%">Koszt</th>
+                            <th style="text-align: center;" width="10%">Usuń</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if produkty is not empty %}
+                            {% for produkt in produkty %}
+                                <tr>
+                                    <td><label class="input"><input type="text" name="p_nazwa[]" value="{{ produkt.nazwa }}" /><label></td>
+                                    <td><label class="input"><input type="text" class="numeric" name="p_cena_klienta[]" value="{{ produkt.cenaKlienta }}"  /><label></td>
+                                    <td><label class="input"><input type="text" class="numeric" name="p_cena[]" value="{{ produkt.cena }}" /><label></td>
+                                    <td align="center"><a class="btn btn-danger jq-wyceny-usun-wiersz" href="javascript:void(0);"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+			<tr class="jq-base-row">
+                            <td><label class="input"><input type="text" name="p_nazwa[]" /><label></td>
+                            <td><label class="input"><input class="numeric" type="text" name="p_cena_klienta[]" /><label></td>
+                            <td><label class="input"><input class="numeric" type="text" name="p_cena[]" /><label></td>
+                            <td class="jq-wyceny-usun" align="center"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" align="right"><a class="btn btn-primary" id="jq-wyceny-dodaj-produkt" href="javascript:void(0);">Dodaj kolejny wiersz</a></td>
+                        </tr>
+                    <tbody>
+                    </tbody>
+                </table>
+            <footer>
+                {{ form_widget(form.submit, { 'label': 'Zapisz' }) }}
+            </footer>
+        </div>
+    </form>
+    <script>
+        
+    </script>
+{% endset %}
+
+
+
+{% block scriptsJS %}
+    <script type="text/javascript" src="{{asset('bundles/rexidashboard/js/plugin/colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            
+            $('#addBlok_kolor').colorpicker().on('changeColor',
+                function(ev) {
+                    $(this).css('background-color', ev.color.toHex());
+                }
+            );
+            
+            $('#jq-wyceny-dodaj-produkt').on('click', function(){
+                var base = $('.jq-base-row');
+                var row = base.clone();
+                var usun_btn = $('<a class="btn btn-danger jq-wyceny-usun-wiersz" href="javascript:void(0);"><i class="glyphicon glyphicon-trash"></i></a>');
+                row.find('.jq-wyceny-usun').append(usun_btn);
+                row.removeClass('jq-base-row');
+                base.before(row)
+            });
+            
+            $(document).on('click', '.jq-wyceny-usun-wiersz', function(){
+                $(this).parent().parent().remove();
+                return false;
+            });
+            
+            ukryj_wyceny($('#addBlok_typ input:checked').val());
+            
+            $('#addBlok_typ input').on('click', function(){
+                ukryj_wyceny($(this).val(), 0);
+            });            
+        });
+        
+        function ukryj_wyceny(stan) {
+            if(stan == 0) {
+                $('#jq-tabela-wycen-produkty').fadeOut();
+            } else {
+                $('#jq-tabela-wycen-produkty').fadeIn();
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block pageContainer %}
+    {{ macros.widgetBlock('Bloki wycen', 'Edytuj blok', blok) }}
+{% endblock %}

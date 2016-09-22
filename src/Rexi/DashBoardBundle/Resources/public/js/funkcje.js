@@ -6,6 +6,8 @@ $(document).ready(function(){
     $('.jq-filter-user-list').on('change', function(){
         $('.jq-filter-user-form').submit();
     });
+    
+    $("input.numeric").numeric()
 });
 
 function ukryj_rejestracja(stan) {

@@ -1,1 +1,15 @@
-Hello {{ name }}!
+{% extends "RexiDashBoardBundle::base.html.twig" %}
+{% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
+{% import 'RexiBlocksValuationBundle::macros.html.twig' as macros_bloki %}
+
+{% set blok %}
+    {% if bloki_wycen is not empty %}
+        <div class="tree bloki_wycen_drzewo">
+            {{ macros_bloki.drzewo_blokow(bloki_wycen) }}
+        </div>
+    {% endif %}
+{% endset %}
+
+{% block pageContainer %}
+    {{ macros.widgetBlock('Bloki wycen', 'Lista bloków wycen', blok) }}
+{% endblock %}
