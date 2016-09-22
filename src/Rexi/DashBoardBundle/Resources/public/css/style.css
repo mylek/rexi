@@ -39,3 +39,16 @@ table th a.sorting_desc{
 }
 .avatar-row form {
 }
+.tabela-wycen .btn {
+    padding: 6px 12px;
+}
+.tabela-wycen label.input {
+    height: 30px;
+}
+
+.bloki_wycen_drzewo li .fa {
+    margin-right: 10px;
+}
+.bloki_wycen_drzewo li a {
+    color: #333;
+}
