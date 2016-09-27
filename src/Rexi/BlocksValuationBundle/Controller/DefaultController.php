@@ -117,7 +117,9 @@ class DefaultController extends Controller
         $addBlockForm = $this->createForm(new BlockType());
         $addBlockForm->get('nazwa')->setData($blok->getNazwa());
         $addBlockForm->get('kolor')->setData($blok->getKolor());
-        $addBlockForm->get('id_rodzica')->setData($em->getReference("RexiBlocksValuationBundle:BlockiWycen", $blok->getIdRodzica()));
+        $id_rodzica = !empty($blok->getIdRodzica()) ? $blok->getIdRodzica(): 0;
+        if($id_rodzica != 0)
+            $addBlockForm->get('id_rodzica')->setData($em->getReference("RexiBlocksValuationBundle:BlockiWycen", $id_rodzica));
         $addBlockForm->get('typ')->setData($blok->getTyp());
         
         if($blok->getTyp() == 1) {
