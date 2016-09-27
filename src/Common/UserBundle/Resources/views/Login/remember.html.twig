@@ -13,7 +13,7 @@
         {% endfor %}
         <h3>Witamy w systemie Rexi</h3>
         <p>Zapomniałeś hasło? Podaj e-mail aby je odzyskać</p>
-        <form class="m-t" method="POST">
+        <form class="m-t przypomnij-haslo" method="POST">
             {{ form_widget(form._token) }}
             <div class="form-group">
                 {{ form_widget(form.email, {'attr': {'class': 'form-control' }}) }}

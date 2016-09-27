@@ -30,9 +30,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request, $page)
     {
         $Repo = $this->getDoctrine()->getRepository('CommonUserBundle:User');
+        
+        $userTyp = $request->query->get('userTyp');
+        if(NULL == $userTyp) {
+            $userTyp = -1;
+        }
+        
         $queryParams = array(
             'orderBy' => 'u.username',
-            'userTyp' => $request->query->get('userTyp'),
+            'userTyp' => $userTyp,
             'search' => $request->query->get('search'),
         );
         $qb = $Repo->getQueryBuilder($queryParams);
@@ -59,7 +65,7 @@ class DefaultController extends Controller
         $user = $Repo->find($id);
         $userInfo = $Repo2->findBy(array('id_user' => $id))[0];
         if(NULL == $user){
-            throw $this->createNotFoundException('Nie znaleziono takiego uzytkownika');
+            throw $this->createNotFoundException('Nie znaleziono takiego użytkownika');
         }
         
         $registerUserForm = $this->createForm(new RegisterUserType()/*, $User*/);
@@ -181,7 +187,7 @@ class DefaultController extends Controller
                     $em->persist($User);
                     $em->flush();
                     
-                    $Session->getFlashBag()->add('success', 'Uzytkownik zostaĹ‚ zapisany');
+                    $Session->getFlashBag()->add('success', 'Użytkownik został‚ zapisany');
                 } catch (Exception $exc) {
                     $this->get('session')->getFlashBag()->add('danger', $exc->getMessage());
                 }

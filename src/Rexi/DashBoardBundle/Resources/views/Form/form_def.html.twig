@@ -98,7 +98,7 @@
     {% spaceless %}
      {% set attr = attr|merge({'class': (attr.class|default('btn btn-default'))|trim }) %}
      {% set type = type|default('file') %}
-     <div style="width: 500px">
+     <div>
         <label for="file" class="input input-file">
            <div class="button"><input type="{{ type }}" {{ block('widget_attributes') }} onchange="this.parentNode.nextSibling.value = this.value">Wybierz plik</div>
            <input type="text" placeholder="Wybierz plik" readonly="">

@@ -52,3 +52,34 @@ table th a.sorting_desc{
 .bloki_wycen_drzewo li a {
     color: #333;
 }
+.user-tab-con {
+    padding: 10px 10px 1px 10px;
+    clear: both;
+}
+.user-form-avatar section label {
+    width: 500px;
+}
+
+@media(max-width: 7650px) {
+    .user-tab-filters .col-md-2 {
+        margin-top: 5px;
+    }
+    .user-tab-con table th:nth-child(7),
+    .user-tab-con table td:nth-child(7),
+    .user-tab-con table th:nth-child(6),
+    .user-tab-con table td:nth-child(6) {
+        display: none;
+    }
+}
+
+@media(max-width: 510px) {
+    .user-form-avatar section label {
+        width: 100%;
+    }
+    .user-tab-con table th:nth-child(4),
+    .user-tab-con table td:nth-child(4),
+    .user-tab-con table th:nth-child(5),
+    .user-tab-con table td:nth-child(5) {
+        display: none;
+    }
+}

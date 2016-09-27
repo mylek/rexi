@@ -5,7 +5,9 @@
     <div class="avatar-row">
         <img src="{{ asset(app.user.avatar) }}" class="online" alt="">
     </div>
-    {{ form(accountSettingsForm, {'attr': {'novalidate': 'true'}}) }}
+    <div class="user-form-avatar">
+        {{ form(accountSettingsForm, {'attr': {'novalidate': 'true'}}) }}
+    </div>
 {% endset %}
 
 {% set blok2 %}
