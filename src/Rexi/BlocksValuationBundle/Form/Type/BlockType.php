@@ -53,7 +53,7 @@ class BlockType extends AbstractType{
                     'label' => 'Typ bloku',
                     'choices' => array(
                         '0' => 'Przycisk',
-                        '1' => 'Lista wycen',
+                        '1' => 'Koszt',
                     ),
                     'expanded' => true,
                 ))

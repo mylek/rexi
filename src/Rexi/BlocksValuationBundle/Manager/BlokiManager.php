@@ -37,7 +37,8 @@ class BlokiManager {
         $drzewo = array(
             'id' => $root->getId(),
             'nazwa' => $root->getNazwa(),
-            'kolor' => $root->getKolor()
+            'kolor' => $root->getKolor(),
+            'typ' => $root->getTyp(),
         );
         
         if($pierwszy) {

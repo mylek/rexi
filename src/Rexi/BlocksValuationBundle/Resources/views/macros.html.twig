@@ -12,12 +12,19 @@
                     {{ blok.nazwa }}
                     </a>
                 </span>
-                {% if blok.dzieci is defined %}
-                {% if blok.dzieci %}
-                    <ul>
-                        {{ _self.drzewo_blokow(blok.dzieci) }}
+                {% if blok.typ == 1 %}
+                    <ul role="tree">
+                        <li class="parent_li" role="treeitem"><span>Tak</span></li>
+                        <li class="parent_li" role="treeitem"><span>Nie</span></li>
                     </ul>
-                {% endif %}
+                {% else %}
+                    {% if blok.dzieci is defined %}
+                    {% if blok.dzieci %}
+                        <ul>
+                            {{ _self.drzewo_blokow(blok.dzieci) }}
+                        </ul>
+                    {% endif %}
+                    {% endif %}
                 {% endif %}
             </li>
         {% if blok.root %}
