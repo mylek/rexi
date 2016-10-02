@@ -67,6 +67,26 @@ class UserInfo {
      * @ORM\Column(type="string", length = 8)
      */
     private $nr_lokalu;
+    
+    /**
+     * @ORM\Column(type="string", length = 16)
+     */
+    private $telefon;
+    
+    /**
+     * @ORM\Column(type="string", length = 64)
+     */
+    private $stanowisko;
+    
+    /**
+     * @ORM\Column(type="string", length = 64)
+     */
+    private $funkcja;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $wyksztalcenie;
 
     /**
      * Get id
@@ -306,5 +326,97 @@ class UserInfo {
     public function getNrLokalu()
     {
         return $this->nr_lokalu;
+    }
+
+    /**
+     * Set telefon
+     *
+     * @param string $telefon
+     * @return UserInfo
+     */
+    public function setTelefon($telefon)
+    {
+        $this->telefon = $telefon;
+
+        return $this;
+    }
+
+    /**
+     * Get telefon
+     *
+     * @return string 
+     */
+    public function getTelefon()
+    {
+        return $this->telefon;
+    }
+
+    /**
+     * Set stanowisko
+     *
+     * @param string $stanowisko
+     * @return UserInfo
+     */
+    public function setStanowisko($stanowisko)
+    {
+        $this->stanowisko = $stanowisko;
+
+        return $this;
+    }
+
+    /**
+     * Get stanowisko
+     *
+     * @return string 
+     */
+    public function getStanowisko()
+    {
+        return $this->stanowisko;
+    }
+
+    /**
+     * Set funkcja
+     *
+     * @param string $funkcja
+     * @return UserInfo
+     */
+    public function setFunkcja($funkcja)
+    {
+        $this->funkcja = $funkcja;
+
+        return $this;
+    }
+
+    /**
+     * Get funkcja
+     *
+     * @return string 
+     */
+    public function getFunkcja()
+    {
+        return $this->funkcja;
+    }
+
+    /**
+     * Set wyksztalcenie
+     *
+     * @param integer $wyksztalcenie
+     * @return UserInfo
+     */
+    public function setWyksztalcenie($wyksztalcenie)
+    {
+        $this->wyksztalcenie = $wyksztalcenie;
+
+        return $this;
+    }
+
+    /**
+     * Get wyksztalcenie
+     *
+     * @return integer 
+     */
+    public function getWyksztalcenie()
+    {
+        return $this->wyksztalcenie;
     }
 }

@@ -157,6 +157,48 @@ class RegisterUserType extends AbstractType{
                     )
                 ),
               ))
+            ->add('telefon', 'text', array(
+                'label' => 'Telefon',
+                'required'    => false,
+                'constraints' => array(
+                    new Assert\Length(array(
+                         'max' => 16,
+                        )
+                    )
+                ),
+              ))
+            ->add('stanowisko', 'text', array(
+                'label' => 'Stanowisko',
+                'required'    => false,
+                'constraints' => array(
+                    new Assert\Length(array(
+                         'max' => 64,
+                        )
+                    )
+                ),
+              ))
+            ->add('funkcja', 'text', array(
+                'label' => 'Funkcja w firmie',
+                'required'    => false,
+                'constraints' => array(
+                    new Assert\Length(array(
+                         'max' => 64,
+                        )
+                    )
+                ),
+              ))
+            ->add('wyksztalcenie', 'choice', array(
+                'label' => 'Wykształcenie',
+                'required'    => false,
+                'choices' => array(
+                        '0' => '-- wybierz --',
+                        '1' => 'wyższe',
+                        '2' => 'średnie',
+                        '3' => 'zasadnicze zawodowe',
+                        '4' => 'gimnazjalne',
+                        '5' => 'podstawowe',
+                ),
+              ))
             ->add('submit', 'submit', array(
                 'label' => 'Zapisz'
             ));

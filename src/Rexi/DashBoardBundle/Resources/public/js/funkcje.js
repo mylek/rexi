@@ -12,19 +12,23 @@ $(document).ready(function(){
 
 function ukryj_rejestracja(stan) {
     if(stan == 0) {
-        $('#userRegister_pesel').parent().parent().hide();
-        $('#userRegister_nr_dowodu').parent().parent().hide();
         $('#userRegister_miasto').parent().parent().hide();
         $('#userRegister_ulica').parent().parent().hide();
         $('#userRegister_nr_domu').parent().parent().hide();
         $('#userRegister_nr_lokalu').parent().parent().hide();
+        
+        $('#userRegister_stanowisko').parent().parent().show();
+        $('#userRegister_funkcja').parent().parent().show();
+        $('#userRegister_wyksztalcenie').parent().show();
     } else {
-        $('#userRegister_pesel').parent().parent().show();
-        $('#userRegister_nr_dowodu').parent().parent().show();
         $('#userRegister_miasto').parent().parent().show();
         $('#userRegister_ulica').parent().parent().show();
         $('#userRegister_nr_domu').parent().parent().show();
         $('#userRegister_nr_lokalu').parent().parent().show();
+        
+        $('#userRegister_stanowisko').parent().parent().hide();
+        $('#userRegister_funkcja').parent().parent().hide();
+        $('#userRegister_wyksztalcenie').parent().hide();
     }
 }
 

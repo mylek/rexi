@@ -82,6 +82,11 @@ class DefaultController extends Controller
             $registerUserForm->get("ulica")->setData($user->getInfo()->getUlica());
             $registerUserForm->get("nr_domu")->setData($user->getInfo()->getNrDomu());
             $registerUserForm->get("nr_lokalu")->setData($user->getInfo()->getNrLokalu());
+            
+            $registerUserForm->get("telefon")->setData($user->getInfo()->getTelefon());     
+            $registerUserForm->get("stanowisko")->setData($user->getInfo()->getStanowisko());     
+            $registerUserForm->get("funkcja")->setData($user->getInfo()->getFunkcja());     
+            $registerUserForm->get("wyksztalcenie")->setData($user->getInfo()->getWyksztalcenie());     
         }
         
         $registerUserForm->remove('plainPassword');
@@ -113,6 +118,11 @@ class DefaultController extends Controller
                     $userInfo->setUlica($postData['ulica']);
                     $userInfo->setNrDomu($postData['nr_domu']);
                     $userInfo->setNrLokalu($postData['nr_lokalu']);
+                    
+                    $userInfo->setTelefon($postData['telefon']);
+                    $userInfo->setStanowisko($postData['stanowisko']);
+                    $userInfo->setFunkcja($postData['funkcja']);
+                    $userInfo->setWyksztalcenie($postData['wyksztalcenie']);
                     
                     $em->persist($userInfo);
                     $em->flush();
@@ -179,6 +189,11 @@ class DefaultController extends Controller
                     $UserInfo->setUlica($postData['ulica']);
                     $UserInfo->setNrDomu($postData['nr_domu']);
                     $UserInfo->setNrLokalu($postData['nr_lokalu']);
+                    
+                    $UserInfo->setTelefon($postData['telefon']);
+                    $UserInfo->setStanowisko($postData['stanowisko']);
+                    $UserInfo->setFunkcja($postData['funkcja']);
+                    $UserInfo->setWyksztalcenie($postData['wyksztalcenie']);
                     
                     $em->persist($UserInfo);
                     $em->flush();

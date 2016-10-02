@@ -67,6 +67,26 @@ class UserInfo {
      * @ORM\Column(type="string", length = 8)
      */
     private $nr_lokalu;
+    
+    /**
+     * @ORM\Column(type="string", length = 16)
+     */
+    private $telefon;
+    
+    /**
+     * @ORM\Column(type="string", length = 64)
+     */
+    private $stanowisko;
+    
+    /**
+     * @ORM\Column(type="string", length = 64)
+     */
+    private $funkcja;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $wyksztalcenie;
 
     /**
      * Get id
