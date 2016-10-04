@@ -11,3 +11,11 @@ services:
 services:
     helper.imageresizer:
         class: Rexi\DashBoardBundle\Helper\ImageResizer
+
+    redirect.after.login:
+        class: Common\UserBundle\Redirection\AfterLoginRedirection
+        arguments: [@router]
+    
+    redirect.after.logout:
+        class: Common\UserBundle\Redirection\AfterLogoutRedirection
+        arguments: [@router, @security.context]
