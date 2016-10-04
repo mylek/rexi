@@ -123,7 +123,6 @@ class DefaultController extends Controller
                     $userInfo->setStanowisko($postData['stanowisko']);
                     $userInfo->setFunkcja($postData['funkcja']);
                     $userInfo->setWyksztalcenie($postData['wyksztalcenie']);
-                    
                     $em->persist($userInfo);
                     $em->flush();
                 }
@@ -157,6 +156,8 @@ class DefaultController extends Controller
             if($registerUserForm->isValid()){
                 $postData = $Request->request->all()['userRegister'];
                 try {
+                    $User->setPassword($postData['plainPassword']['first']);
+                    $User->setPlainPassword($postData['plainPassword']['second']);
                     $encoderFactory = $this->container->get('security.encoder_factory');
                     $encoder = $encoderFactory->getEncoder($User);
                     $encodedPasswd = $encoder->encodePassword($User->getPlainPassword(), $User->getSalt());

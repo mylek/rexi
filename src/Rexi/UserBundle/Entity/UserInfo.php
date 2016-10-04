@@ -84,9 +84,9 @@ class UserInfo {
     private $funkcja;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $wyksztalcenie;
+    private $wyksztalcenie = null;
 
     /**
      * Get id

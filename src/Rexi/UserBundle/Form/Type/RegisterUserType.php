@@ -189,7 +189,7 @@ class RegisterUserType extends AbstractType{
               ))
             ->add('wyksztalcenie', 'choice', array(
                 'label' => 'Wykształcenie',
-                'required'    => false,
+                'empty_value'   => false,
                 'choices' => array(
                         '0' => '-- wybierz --',
                         '1' => 'wyższe',

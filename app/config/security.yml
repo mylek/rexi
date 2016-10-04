@@ -36,5 +36,6 @@ security:
                 path: /
                 domain: ~
     access_control:
-        - { path: ^/panel, roles: ROLE_USER }
+        - { path: ^/panel, roles: ROLE_ADMIN }
+        - { path: ^/wyceny, roles: ROLE_USER }
             
