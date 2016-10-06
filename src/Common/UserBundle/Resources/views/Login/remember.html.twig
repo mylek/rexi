@@ -1,25 +1,17 @@
 {% extends "CommonUserBundle::empty_page.html.twig" %}
 {% block pageContainer %}
-<div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
-        <div>
-            <h1 class="logo-rexi"></h1>
-        </div>
-        
-        {% for type,messages in app.session.flashbag.all() %}
-            {% for msg in messages %}
-            <div class="alert alert-{{ type }}">{{ msg }}</div>
-            {% endfor %}
+    {% for type,messages in app.session.flashbag.all() %}
+        {% for msg in messages %}
+        <div class="alert alert-{{ type }}">{{ msg }}</div>
         {% endfor %}
-        <h3>Witamy w systemie Rexi</h3>
-        <p>Zapomniałeś hasło? Podaj e-mail aby je odzyskać</p>
-        <form class="m-t przypomnij-haslo" method="POST">
-            {{ form_widget(form._token) }}
-            <div class="form-group">
-                {{ form_widget(form.email, {'attr': {'class': 'form-control' }}) }}
-            </div>
-            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary block full-width m-b' }})}}
-        </form>
-    </div>
-</div>
+    {% endfor %}
+    <h3>Witamy w systemie Rexi</h3>
+    <p>Zapomniałeś hasło? Podaj e-mail aby je odzyskać</p>
+    <form class="m-t przypomnij-haslo" method="POST">
+        {{ form_widget(form._token) }}
+        <div class="form-group">
+            {{ form_widget(form.email, {'attr': {'class': 'form-control' }}) }}
+        </div>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary block full-width m-b' }})}}
+    </form>
 {% endblock %}

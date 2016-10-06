@@ -1,12 +1,6 @@
 {% extends "CommonUserBundle::empty_page.html.twig" %}
 {% block pageContainer %}
-
-<div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
-        <div>
-            <h1 class="logo-rexi"></h1>
-        </div>
-        {% if loginError is defined and loginError is not null %}
+    {% if loginError is defined and loginError is not null %}
         <div class="wrapper wrapper-content animated fadeInRight alerts">
             <div class="row">
                 <div class="col-lg-12">
@@ -14,20 +8,18 @@
                 </div>
             </div>
         </div>
-        {% endif %}
-        <h3>Witamy w systemie Rexi</h3>
-        <p>Podaj swoje dane aby zalogować się do systemu</p>
-        <form class="m-t" method="POST" role="form" action="{{ path('_check_path') }}">
-            <div class="form-group">
-                <input type="text" name="_username" class="form-control" placeholder="Username" required="">
-            </div>
-            <div class="form-group">
-                <input type="password" name="_password" class="form-control" placeholder="Password" required="">
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-            <label> <input type="checkbox" class="i-checks" name="_remember_me"> Zapamiętaj mnie</label>
-            <div><a href="{{ path('user_remember') }}"><small>Przypomnij hasło</small></a></div>
-        </form>
-    </div>
-</div>
+    {% endif %}
+    <h3>Witamy w systemie Rexi</h3>
+    <p>Podaj swoje dane aby zalogować się do systemu</p>
+    <form class="m-t" method="POST" role="form" action="{{ path('_check_path') }}">
+        <div class="form-group">
+            <input type="text" name="_username" class="form-control" placeholder="Username" required="">
+        </div>
+        <div class="form-group">
+            <input type="password" name="_password" class="form-control" placeholder="Password" required="">
+        </div>
+        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+        <label> <input type="checkbox" class="i-checks" name="_remember_me"> Zapamiętaj mnie</label>
+        <div><a href="{{ path('user_remember') }}"><small>Przypomnij hasło</small></a></div>
+    </form>
 {% endblock %}
