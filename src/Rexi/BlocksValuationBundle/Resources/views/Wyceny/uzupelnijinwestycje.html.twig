@@ -1,0 +1,74 @@
+{% extends "RexiBlocksValuationBundle::empty_page.html.twig" %}
+
+
+{% block pageContainer %}
+    <h3>Witamy w systemie Rexi</h3>
+    <p>Uzupełnij dane o inwestycji aby móc przejść do wyceny projektu</p>
+    
+    {% form_theme form 'RexiBlocksValuationBundle:Form:form_def.html.twig' %}
+    {{ form_start(form) }}
+    {% set errors_row = form.kod_pocztowy.vars.errors|length + form.miasto.vars.errors|length  %}
+    <fieldset class="form_grup_content">
+        <h3>Dane o inwestycji</h3>
+        <div class="form-group{% if errors_row > 0 %} has-error{% endif %}">
+            <label class="label-form">Kod pocztowy / miasto</label>
+            {{ form_widget(form.kod_pocztowy) }} / {{ form_widget(form.miasto) }}
+            {{ form_errors(form.kod_pocztowy) }}
+            {{ form_errors(form.miasto) }}
+        </div>
+        {{ form_row(form.miejscowosc) }}
+        {% set errors_row = form.ulica.vars.errors|length + form.nr_domu.vars.errors|length + form.nr_lokalu.vars.errors|length %}
+        <div class="form-group{% if errors_row > 0 %} has-error{% endif %}">
+            <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+            {{ form_widget(form.ulica) }} / {{ form_widget(form.nr_domu) }}  / {{ form_widget(form.nr_lokalu) }}
+            {{ form_errors(form.ulica) }}
+            {{ form_errors(form.nr_domu) }}
+            {{ form_errors(form.nr_lokalu) }}
+        </div>
+        {{ form_row(form.nr_dzialki) }}
+    </fieldset>
+    
+    <div id="jq_inwestorzy_content">
+        {% if inwestorzyHtml is defined -%}
+            {{inwestorzyHtml|raw}}
+        {% endif %}
+    </div>
+    
+    <button class="btn btn-primary" id="jq-dodaj-inwestora">
+        <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Dodaj inwestora
+    </button>   
+        
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block scriptsJS %}
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+                startView: 2,
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: "yyyy-mm-dd",
+                language: 'pl'
+            });
+            $('#jq-dodaj-inwestora').on('click', function(){
+                $.ajax({
+                    type: "GET",
+                    dataType: 'html',
+                    url: '{{ path('rexi_wycen_uzupelnij_ajax_inwestor') }}',
+                    async: false //you won't need that if nothing in your following code is dependend of the result
+                })
+                .done(function(response){
+                    $('#jq_inwestorzy_content').append(response);              
+                })
+                .fail(function(jqXHR, textStatus, errorThrown){
+                    alert('Error : ' + errorThrown);
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "RexiBlocksValuationBundle::empty_page.html.twig" %}
+
+
+{% block pageContainer %}
+    <h3>Witamy w systemie Rexi</h3>
+    <p>Uzupełnij swoje dane aby móc przejść do wyceny projektu</p>
+    {% form_theme form 'RexiBlocksValuationBundle:Form:form_def.html.twig' %}
+    {{ form_start(form, {'attr': {'novalidate': 'true'}}) }}
+    {{ form_row(form.imie) }}
+    {{ form_row(form.imie_drugie) }}
+    {{ form_row(form.nazwisko) }}
+        
+    <div class="col-lg-12 col-dane-dowodu jq-dane-z-dowodu-wzor">
+        <div class="ibox collapsed">
+            <div class="ibox-title">
+                <h5>Dane z dowodu</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display: none;">
+                {{ form_row(form.imie_ojca) }}
+                {{ form_row(form.imie_matki) }}
+                {{ form_row(form.data_urodzenia) }}
+                {{ form_row(form.plec) }}
+                {% set errors_row = form.kod_pocztowy.vars.errors|length + form.miasto.vars.errors|length  %}
+                <div class="form-group{% if errors_row > 0 %} has-error{% endif %}">
+                    <label class="label-form">Kod pocztowy / miasto</label>
+                    {{ form_widget(form.kod_pocztowy) }} / {{ form_widget(form.miasto) }}
+                    {{ form_errors(form.kod_pocztowy) }}
+                    {{ form_errors(form.miasto) }}
+                </div>
+                {{ form_row(form.miejscowosc) }}
+                {% set errors_row = form.ulica.vars.errors|length + form.nr_domu.vars.errors|length + form.nr_lokalu.vars.errors|length %}
+                <div class="form-group{% if errors_row > 0 %} has-error{% endif %}">
+                    <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+                    {{ form_widget(form.ulica) }} / {{ form_widget(form.nr_domu) }}  / {{ form_widget(form.nr_lokalu) }}
+                    {{ form_errors(form.ulica) }}
+                    {{ form_errors(form.nr_domu) }}
+                    {{ form_errors(form.nr_lokalu) }}
+                </div>
+                {{ form_row(form.miejsce_urodzenia) }}
+                {{ form_row(form.data_wydania_dowodu) }}
+                {{ form_row(form.data_waznosci_dowodu) }}
+                {{ form_row(form.organizacja_wydajaca_dowodu) }}
+                {{ form_row(form.pesel) }}
+                {{ form_row(form.nr_dowodu) }}
+            </div>
+        </div>
+    </div> 
+    
+    <div class="col-lg-12 col-dane-dowodu">
+        <div class="ibox collapsed">
+            <div class="ibox-title">
+                <h5>Adres zamieszkania</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display: none;">
+                <div class="row button-kopiuj-dane jq-kopiuj-dane-dowodu">
+                    <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Kopiuj dane z dowodu osobistego</span></button>
+                </div>
+                <div class="form-group">
+                    <label class="label-form">Kod pocztowy / miasto</label>
+                    {{ form_widget(form.kod_pocztowy_zamieszkania) }} / {{ form_widget(form.miasto_zamieszkania) }}
+                </div>
+                {{ form_row(form.miejscowosc_zamieszkania) }}
+                <div class="form-group">
+                    <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+                    {{ form_widget(form.ulica_zamieszkania) }} / {{ form_widget(form.nr_domu_zamieszkania) }}  / {{ form_widget(form.nr_lokalu_zamieszkania) }}
+                    {{ form_errors(form.ulica_zamieszkania) }}
+                    {{ form_errors(form.nr_domu_zamieszkania) }}
+                    {{ form_errors(form.nr_lokalu_zamieszkania) }}
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <div class="col-lg-12 col-dane-dowodu">
+        <div class="ibox collapsed">
+            <div class="ibox-title">
+                <h5>Adres korespondencji</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display: none;">
+                <div class="row button-kopiuj-dane jq-kopiuj-dane-dowodu">
+                    <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Kopiuj dane z dowodu osobistego</span></button>
+                </div>
+                <div class="form-group">
+                    <label class="label-form">Kod pocztowy / miasto</label>
+                    {{ form_widget(form.kod_pocztowy_korespondencji) }} / {{ form_widget(form.miasto_korespondencji) }}
+                </div>
+                {{ form_row(form.miejscowosc_korespondencji) }}
+                <div class="form-group">
+                    <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+                    {{ form_widget(form.ulica_korespondencji) }} / {{ form_widget(form.nr_domu_korespondencji) }}  / {{ form_widget(form.nr_lokalu_korespondencji) }}
+                    {{ form_errors(form.ulica_korespondencji) }}
+                    {{ form_errors(form.nr_domu_korespondencji) }}
+                    {{ form_errors(form.nr_lokalu_korespondencji) }}
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block scriptsJS %}
+    <script>
+        $(document).ready(function(){
+            
+            $('#jq-dodaj-inwestora').on('click', function(){
+                var base = $('.jq-dane-z-dowodu-wzor');
+                var row = base.clone();
+                row.removeClass('jq-dane-z-dowodu-wzor');
+                row.find('h5').text('Inwestor');
+                var inwestor_row = '<div class="form-group fomr-wyceny-rodzaj-inwestora">'+
+                    '<label class="label-form">Rodzaj inwestora</label>'+
+                    '<div class="col-sm-12">'+
+                        '<div class="i-checks"><label> <input type="radio" value="0" name="a"> <i></i> MaÄąâ€šÄąÄ˝onek </label></div>'+
+                        '<div class="i-checks"><label> <input type="radio" value="1" name="a"> <i></i> PrzykÄąâ€šad 1 </label></div>'+
+                        '<div class="i-checks"><label> <input type="radio" value="2" name="a"> <i></i> PrzykÄąâ€šad 2 </label></div>'+
+                        '<div class="i-checks"><label> <input type="radio" value="3" name="a"> <i></i> <span>Inne <input type="text" disabled="disabled" placeholder="" class="form-control"> </span></label></div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="form-group"><label for="userInfoWyceny_imie" class="label-form">ImiĂ„â„˘</label><input type="text" id="userInfoWyceny_imie" name="userInfoWyceny[imie]" class="form-control"></div>'+
+                '<div class="form-group"><label for="userInfoWyceny_imie_drugie" class="label-form">Drugie imie</label><input type="text" id="userInfoWyceny_imie_drugie" name="userInfoWyceny[imie_drugie]" class="form-control"></div>'+
+                '<div class="form-group"><label for="userInfoWyceny_nazwisko" class="label-form">Nazwisko</label><input type="text" id="userInfoWyceny_nazwisko" name="userInfoWyceny[nazwisko]" class="form-control"></div>';
+                row.find('.ibox-content').prepend(inwestor_row);
+                row.find('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green'
+                });
+                $(this).before(row);
+            });
+            
+            $('.jq-kopiuj-dane-dowodu').on('click', function(){
+                var kod_pocztowy = $('#userInfoWyceny_kod_pocztowy').val();
+                var miasto = $('#userInfoWyceny_miasto').val();
+                var miejscowosc = $('#userInfoWyceny_miejscowosc').val();
+                var ulica = $('#userInfoWyceny_ulica').val();
+                var nr_domu = $('#userInfoWyceny_nr_domu').val();
+                var nr_lokalu = $('#userInfoWyceny_nr_lokalu').val();
+                
+                var contener = $(this).parent().parent();
+                contener.find('.jq_kod_pocztowy').val(kod_pocztowy);
+                contener.find('.jq_miasto').val(miasto);
+                contener.find('.jq_miejscowosc').val(miejscowosc);
+                contener.find('.jq_ulica').val(ulica);
+                contener.find('.jq_nr_domu').val(nr_domu);
+                contener.find('.jq_nr_lokalu').val(nr_lokalu);
+            });
+            
+            $('.datepicker').datepicker({
+                    startView: 2,
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: true,
+                    format: "yyyy-mm-dd",
+                    language: 'pl'
+            });
+        });
+    </script>
+{% endblock %}

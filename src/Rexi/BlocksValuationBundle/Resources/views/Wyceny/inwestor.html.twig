@@ -1,0 +1,130 @@
+<div class="col-lg-12 col-dane-dowodu jq-dane-z-dowodu-wzor">
+    <div class="ibox collapsed border-bottom">
+        <div class="ibox-title">
+            <h5>Dane Inwestora</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content" style="display: block;">
+            <div class="form-group fomr-wyceny-rodzaj-inwestora">
+                <label class="label-form">Rodzaj inwestora</label>
+                <div class="col-sm-12">
+                    <div class="i-checks"><label> <input type="radio" value="0" {% if inwestor.rodzaj is defined %}{% if inwestor.rodzaj == 0 %} checked="checked" {% endif %}{% endif %} name="inwestor[rodzaj][]"> <i></i> Małżonek </label></div>
+                    <div class="i-checks"><label> <input type="radio" value="1" {% if inwestor.rodzaj is defined %}{% if inwestor.rodzaj == 1 %} checked="checked" {% endif %}{% endif %} name="inwestor[rodzaj][]"> <i></i> Przykład 1 </label></div>
+                    <div class="i-checks"><label> <input type="radio" value="2" {% if inwestor.rodzaj is defined %}{% if inwestor.rodzaj == 2 %} checked="checked" {% endif %}{% endif %} name="inwestor[rodzaj][]"> <i></i> Przykład 2 </label></div>
+                    <div class="i-checks"><label> <input type="radio" value="3" {% if inwestor.rodzaj is defined %}{% if inwestor.rodzaj == 3 %} checked="checked" {% endif %}{% endif %} name="inwestor[rodzaj][]"> <i></i> <span>Inne <input type="text"  {% if inwestor.rodzaj is defined %}{% if inwestor.rodzaj == 3 %} value="{% if inwestor.rodzaj_nazwa is defined %}{{ inwestor.rodzaj_nazwa }} {% endif %}" {% else %} disabled="disabled" {% endif %} {% endif %} placeholder="" name="inwestor[rodzaj_nazwa][]" class="form-control jq_rodzaj_inne"> </span></label></div>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="hr-line-dashed"></div>
+            <h3>Dane z dowodu</h3>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group"><label for="userInfoWyceny_imie" class="label-form">Imię</label>        <input type="text" id="userInfoWyceny_imie" name="inwestor[imie][]"  class="form-control" value="{% if inwestor.imie is defined %}{{ inwestor.imie }}{% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_imie_drugie" class="label-form">Drugie imie</label>        <input type="text" id="userInfoWyceny_imie_drugie" name="inwestor[imie_drugie][]"  class="form-control" value="{% if inwestor.imie_drugie is defined %}{{ inwestor.imie_drugie }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_nazwisko" class="label-form">Nazwisko</label>        <input type="text" id="userInfoWyceny_nazwisko" name="inwestor[nazwisko][]"  class="form-control" value="{% if inwestor.nazwisko is defined %}{{ inwestor.nazwisko }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_imie_ojca" class="label-form">Imie ojca</label>        <input type="text" id="userInfoWyceny_imie_ojca" name="inwestor[imie_ojca][]" class="form-control" value="{% if inwestor.imie_ojca is defined %}{{ inwestor.imie_ojca }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_imie_matki" class="label-form">Imie matki</label>        <input type="text" id="userInfoWyceny_imie_matki" name="inwestor[imie_matki][]" class="form-control" value="{% if inwestor.imie_matki is defined %}{{ inwestor.imie_matki }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_data_urodzenia" class="label-form">Data urodzenia</label>        <input type="date" id="userInfoWyceny_data_urodzenia" name="inwestor[data_urodzenia][]" class="datepicker form-control" value="{% if inwestor.data_urodzenia is defined %}{{ inwestor.data_urodzenia }} {% endif %}"></div>
+            <div class="form-group"><label class="label-form">Płeć</label><div class="row" id="userInfoWyceny_plec">
+                    <div class="col-md-4">
+                        <label class="radio"><input type="radio" value="0" {% if inwestor.plec is defined %}{% if inwestor.plec == 0 %} checked="checked" {% endif %}{% endif %} id="userInfoWyceny_plec_0" name="inwestor[plec][]" ><i></i>mężczyzna
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="radio"><input type="radio" value="1" {% if inwestor.plec is defined %}{% if inwestor.plec == 1 %} checked="checked" {% endif %}{% endif %} id="userInfoWyceny_plec_1" name="inwestor[plec][]" >
+                            <i></i>kobieta
+                        </label>
+                    </div>
+                </div></div>
+            <div class="form-group">
+                <label class="label-form">Kod pocztowy / miasto</label>
+                <input type="text" id="userInfoWyceny_kod_pocztowy" name="inwestor[kod_pocztowy][]" style="width: 90px; display: inline-block; text-align: center;" data-mask="99-999" data-mask-placeholder="_" class="form-control" value="{% if inwestor.kod_pocztowy is defined %}{{ inwestor.kod_pocztowy }} {% endif %}"> /         <input type="text" id="userInfoWyceny_miasto" name="inwestor[miasto][]" style="width: 370px; display: inline-block;" class="form-control" value="{% if inwestor.miasto is defined %}{{ inwestor.miasto }} {% endif %}">
+
+
+            </div>
+            <div class="form-group">        <label for="userInfoWyceny_miejscowosc" class="label-form">Miejscowość</label>        <input type="text" id="userInfoWyceny_miejscowosc" name="inwestor[miejscowosc][]" class="form-control" value="{% if inwestor.miejscowosc is defined %}{{ inwestor.miejscowosc }} {% endif %}"></div>
+            <div class="form-group">
+                <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+                <input type="text" id="userInfoWyceny_ulica" name="inwestor[ulica][]" style="width: 350px; display: inline-block;" class="form-control" value="{% if inwestor.ulica is defined %}{{ inwestor.ulica }} {% endif %}"> /         <input type="text" id="userInfoWyceny_nr_domu" name="inwestor[nr_domu][]" style="width: 50px; display: inline-block;" class="form-control" value="{% if inwestor.nr_domu is defined %}{{ inwestor.nr_domu }} {% endif %}">  /         <input type="text" id="userInfoWyceny_nr_lokalu" name="inwestor[nr_lokalu][]" style="width: 50px; display: inline-block;" class="form-control" value="{% if inwestor.nr_lokalu is defined %}{{ inwestor.nr_lokalu }} {% endif %}">
+            </div>
+            <div class="form-group"><label for="userInfoWyceny_miejsce_urodzenia" class="label-form">Miejsce urodzenia</label>        <input type="text" id="userInfoWyceny_miejsce_urodzenia" name="inwestor[miejsce_urodzenia][]" class="form-control" value="{% if inwestor.miejsce_urodzenia is defined %}{{ inwestor.miejsce_urodzenia }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_data_wydania_dowodu" class="label-form">Data wydania dowodu osobistego</label>        <input type="date" id="userInfoWyceny_data_wydania_dowodu" name="inwestor[data_wydania_dowodu][]" class="datepicker form-control" value="{% if inwestor.data_wydania_dowodu is defined %}{{ inwestor.data_wydania_dowodu }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_data_waznosci_dowodu" class="label-form">Data ważnosci dowodu osobistego</label>        <input type="date" id="userInfoWyceny_data_waznosci_dowodu" name="inwestor[data_waznosci_dowodu][]" class="datepicker form-control" value="{% if inwestor.data_waznosci_dowodu is defined %}{{ inwestor.data_waznosci_dowodu }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_organizacja_wydajaca_dowodu" class="label-form">Organizacja wydająca dowód osobity</label>        <input type="text" id="userInfoWyceny_organizacja_wydajaca_dowodu" name="inwestor[organizacja_wydajaca_dowodu][]" class="form-control" value="{% if inwestor.organizacja_wydajaca_dowodu is defined %}{{ inwestor.organizacja_wydajaca_dowodu }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_pesel" class="label-form">PESEL</label>        <input type="text" id="userInfoWyceny_pesel" name="inwestor[pesel][]" data-mask="99999999999" data-mask-placeholder="_" class="form-control" value="{% if inwestor.pesel is defined %}{{ inwestor.pesel }} {% endif %}"></div>
+            <div class="form-group"><label for="userInfoWyceny_nr_dowodu" class="label-form">Numer dowodu</label>        <input type="text" id="userInfoWyceny_nr_dowodu" name="inwestor[nr_dowodu][]" data-mask="aaa999999" data-mask-placeholder="_" class="form-control" value="{% if inwestor.nr_dowodu is defined %}{{ inwestor.nr_dowodu }} {% endif %}"></div>
+            <div class="hr-line-dashed"></div>
+            <h3>Adres zamieszkania</h3>
+            <div class="hr-line-dashed"></div>
+            <div class="row button-kopiuj-dane jq-kopiuj-dane-dowodu">
+                <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Kopiuj dane z dowodu osobistego</span></button>
+            </div>
+            <div class="form-group">
+                <label class="label-form">Kod pocztowy / miasto</label>
+                <input type="text" id="userInfoWyceny_kod_pocztowy_zamieszkania" name="inwestor[kod_pocztowy_zamieszkania][]" style="width: 90px; display: inline-block; text-align: center;" data-mask="99-999" data-mask-placeholder="_" class="jq_kod_pocztowy form-control" value="{% if inwestor.kod_pocztowy_zamieszkania is defined %}{{ inwestor.kod_pocztowy_zamieszkania }} {% endif %}"> /         <input type="text" id="userInfoWyceny_miasto_zamieszkania" name="inwestor[miasto_zamieszkania][]" style="width: 370px; display: inline-block;" class="jq_miasto form-control" value="{% if inwestor.miasto_zamieszkania is defined %}{{ inwestor.miasto_zamieszkania }} {% endif %}">
+            </div>
+            <div class="form-group">        <label for="userInfoWyceny_miejscowosc_zamieszkania" class="label-form">Miejscowość</label>        <input type="text" id="userInfoWyceny_miejscowosc_zamieszkania" name="inwestor[miejscowosc_zamieszkania][]" class="jq_miejscowosc form-control" value="{% if inwestor.miejscowosc_zamieszkania is defined %}{{ inwestor.miejscowosc_zamieszkania }} {% endif %}"></div>
+            <div class="form-group">
+                <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+                <input type="text" id="userInfoWyceny_ulica_zamieszkania" name="inwestor[ulica_zamieszkania][]" style="width: 350px; display: inline-block;" class="jq_ulica form-control" value="{% if inwestor.ulica_zamieszkania is defined %}{{ inwestor.ulica_zamieszkania }} {% endif %}"> /         <input type="text" id="userInfoWyceny_nr_domu_zamieszkania" name="inwestor[nr_domu_zamieszkania][]" style="width: 50px; display: inline-block;" class="jq_nr_domu form-control" value="{% if inwestor.nr_domu_zamieszkania is defined %}{{ inwestor.nr_domu_zamieszkania }} {% endif %}">  /         <input type="text" id="userInfoWyceny_nr_lokalu_zamieszkania" name="inwestor[nr_lokalu_zamieszkania][]" style="width: 50px; display: inline-block;" class="jq_nr_lokalu form-control" value="{% if inwestor.nr_lokalu_zamieszkania is defined %}{{ inwestor.nr_lokalu_zamieszkania }} {% endif %}">
+            </div>
+            <div class="hr-line-dashed"></div>
+            <h3>Adres korespondencji</h3>
+            <div class="hr-line-dashed"></div>
+            <div class="row button-kopiuj-dane jq-kopiuj-dane-dowodu">
+                <button class="btn btn-success " type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Kopiuj dane z dowodu osobistego</span></button>
+            </div>
+            <div class="form-group">
+                <label class="label-form">Kod pocztowy / miasto</label>
+                <input type="text" id="userInfoWyceny_kod_pocztowy_korespondencji" name="inwestor[kod_pocztowy_korespondencji][]" style="width: 90px; display: inline-block; text-align: center;" data-mask="99-999" data-mask-placeholder="_" class="jq_kod_pocztowy form-control" value="{% if inwestor.kod_pocztowy_korespondencji is defined %}{{ inwestor.kod_pocztowy_korespondencji }} {% endif %}"> /         <input type="text" id="userInfoWyceny_miasto_korespondencji" name="inwestor[miasto_korespondencji][]" style="width: 370px; display: inline-block;" class="jq_miasto form-control" value="{% if inwestor.miasto_korespondencji is defined %}{{ inwestor.miasto_korespondencji }} {% endif %}">
+            </div>
+            <div class="form-group">        <label for="userInfoWyceny_miejscowosc_korespondencji" class="label-form">Miejscowość</label>        <input type="text" id="userInfoWyceny_miejscowosc_korespondencji" name="inwestor[miejscowosc_korespondencji][]" class="jq_miejscowosc form-control" value="{% if inwestor.miejscowosc_korespondencji is defined %}{{ inwestor.miejscowosc_korespondencji }} {% endif %}"></div>
+            <div class="form-group">
+                <label class="label-form">Ulica / Nr domu / Nr lokalu</label>
+                <input type="text" id="userInfoWyceny_ulica_korespondencji" name="inwestor[ulica_korespondencji][]" style="width: 350px; display: inline-block;" class="jq_ulica form-control" value="{% if inwestor.ulica_korespondencji is defined %}{{ inwestor.ulica_korespondencji }} {% endif %}"> /         <input type="text" id="userInfoWyceny_nr_domu_korespondencji" name="inwestor[nr_domu_korespondencji][]" style="width: 50px; display: inline-block;" class="jq_nr_domu form-control" value="{% if inwestor.nr_domu_korespondencji is defined %}{{ inwestor.nr_domu_korespondencji }} {% endif %}">  /         <input type="text" id="userInfoWyceny_nr_lokalu_korespondencji" name="inwestor[nr_lokalu_korespondencji][]" style="width: 50px; display: inline-block;" class="jq_nr_lokalu form-control" value="{% if inwestor.nr_lokalu_korespondencji is defined %}{{ inwestor.nr_lokalu_korespondencji }} {% endif %}">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            startView: 2,
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            autoclose: true,
+            format: "yyyy-mm-dd",
+            language: 'pl'
+        });
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+        });
+        $('.i-checks').on('ifClicked', function(event){
+            if(event.target.value == 3) {
+                $(this).find('.jq_rodzaj_inne').prop("disabled", false);
+            }
+        });
+        
+        $('.jq-kopiuj-dane-dowodu').on('click', function(){
+            var kod_pocztowy = $('#userInfoWyceny_kod_pocztowy').val();
+            var miasto = $('#userInfoWyceny_miasto').val();
+            var miejscowosc = $('#userInfoWyceny_miejscowosc').val();
+            var ulica = $('#userInfoWyceny_ulica').val();
+            var nr_domu = $('#userInfoWyceny_nr_domu').val();
+            var nr_lokalu = $('#userInfoWyceny_nr_lokalu').val();
+
+            var contener = $(this).parent().parent();
+            contener.find('.jq_kod_pocztowy').val(kod_pocztowy);
+            contener.find('.jq_miasto').val(miasto);
+            contener.find('.jq_miejscowosc').val(miejscowosc);
+            contener.find('.jq_ulica').val(ulica);
+            contener.find('.jq_nr_domu').val(nr_domu);
+            contener.find('.jq_nr_lokalu').val(nr_lokalu);
+        });
+    });
+</script>

@@ -46,37 +46,3 @@ fieldset legend {
     width: 250px;
     display: inline-block;
 }
-
-.button-kopiuj-dane {
-    text-align: right;
-    margin: 0 15px;
-}
-.note-error {
-    color: #ed5565;
-    font-weight: bold;
-}
-.form_grup_content {
-    border: 1px solid #e5e6e7;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
-    background-color: #ffffff;
-    margin-bottom: 15px;
-}
-.form_grup_content .form-group{
-    padding: 0 10px;
-}
-.form_grup_content h3{
-    border-top: 4px solid #e7eaec;
-    margin-top: 0;
-    padding-top: 8px;
-    padding-bottom: 7px;
-    border-bottom: 1px solid #e7eaec;
-    background: #f3f3f3;
-}
-.clear-fix {
-    clear: both;
-}
-.wycenyscreen .hr-line-dashed {
-    margin: 10px 0;
-}

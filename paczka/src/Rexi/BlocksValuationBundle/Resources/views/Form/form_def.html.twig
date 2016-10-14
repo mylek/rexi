@@ -13,11 +13,7 @@
 {%- endblock form_start -%}
 
 {%- block form_row -%}
-    {% set row_classes = '' %}
-    {% if errors|length > 0 %}
-        {% set row_classes = ' has-error' %}
-    {% endif %}
-    <div class="form-group{{ row_classes }}">
+    <div class="form-group">
         {{- form_label(form) -}}
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
@@ -121,5 +117,5 @@
             {% set label = name|humanize %}
         {%- endif -%}
     {%- endif -%}
-    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="btn btn-primary">{{ label|trans({}, translation_domain)|raw }}</button>
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="btn btn-primary">{{ label|trans({}, translation_domain) }}</button>
 {%- endblock button_widget -%}

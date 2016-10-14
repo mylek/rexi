@@ -91,6 +91,11 @@ class User implements AdvancedUserInterface, \Serializable {
     protected $info;
     
     /**
+     * @ORM\OneToMany(targetEntity="Rexi\BlocksValuationBundle\Entity\Inwestycje", mappedBy="id_user")
+     */
+    protected $inwestycje;
+    
+    /**
      * @var UploadedFile
      */
     private $avatarFile;

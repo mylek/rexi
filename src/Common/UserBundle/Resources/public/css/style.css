@@ -1772,6 +1772,7 @@ table.dataTable thead .sorting:after {
 }
 .has-error .form-control {
   border-color: #ed5565;
+  background: #fff0f0;
 }
 .has-success .control-label {
   color: #1ab394;

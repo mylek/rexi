@@ -19,9 +19,8 @@ class UserInfoType extends AbstractType{
         $builder
                 ->add('imie', 'text', array(
                 'label' => 'Imię',
-                'required'    => true,
+                'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
@@ -30,9 +29,8 @@ class UserInfoType extends AbstractType{
               ))
               ->add('imie_drugie', 'text', array(
                 'label' => 'Drugie imie',
-                'required'    => true,
+                'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
@@ -41,9 +39,8 @@ class UserInfoType extends AbstractType{
               ))
             ->add('nazwisko', 'text', array(
                 'label' => 'Nazwisko',
-                'required'    => true,
+                'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
@@ -55,7 +52,6 @@ class UserInfoType extends AbstractType{
                 'label' => 'Imie ojca',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
@@ -66,24 +62,23 @@ class UserInfoType extends AbstractType{
                 'label' => 'Imie matki',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
                     )
                 ),
               ))
-            ->add('data_urodzenia', 'date', array(
+            ->add('data_urodzenia', 'text', array(
                 'label' => 'Data urodzenia',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
                 'attr' => array(
                     'class' => 'datepicker'
                 ),
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
-                    new Assert\Date()
+                    new Assert\Length(array(
+                         'max' => 16,
+                        )
+                    )
                 ),
               ))
             ->add('plec', 'choice', array(
@@ -92,22 +87,17 @@ class UserInfoType extends AbstractType{
                         '0' => 'mężczyzna',
                         '1' => 'kobieta',
                     ),
-                    'constraints' => array(
-                        new Assert\NotBlank()
-                    ),
-                    'expanded' => true
-                    )
-                )
+                    'expanded' => true,
+                ))
             ->add('kod_pocztowy', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 90px; display: inline-block; text-align: center;',
+                    'style' => 'width: 90px; display: inline-block;',
                     'data-mask' => '99-999',
                     'data-mask-placeholder' => '_'
                 ),
                 'label' => 'Kod pocztowy',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 6,
                         )
@@ -121,18 +111,6 @@ class UserInfoType extends AbstractType{
                 'label' => 'Miasto',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
-                    new Assert\Length(array(
-                         'max' => 64,
-                        )
-                    )
-                ),
-              ))
-            ->add('miejscowosc', 'text', array(
-                'label' => 'Miejscowość',
-                'required'    => false,
-                'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
@@ -146,7 +124,6 @@ class UserInfoType extends AbstractType{
                 'label' => 'Ulica',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 128,
                         )
@@ -160,7 +137,6 @@ class UserInfoType extends AbstractType{
                 'label' => 'Numer domu',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 8,
                         )
@@ -174,7 +150,6 @@ class UserInfoType extends AbstractType{
                 'label' => 'Numer lokalu',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 8,
                         )
@@ -183,12 +158,11 @@ class UserInfoType extends AbstractType{
             ))
                 
             // START zameldowanie 
-            ->add('kod_pocztowy_zamieszkania', 'text', array(
+            ->add('kod_pocztowy_zameldowania', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 90px; display: inline-block; text-align: center;',
+                    'style' => 'width: 90px; display: inline-block;',
                     'data-mask' => '99-999',
-                    'data-mask-placeholder' => '_',
-                    'class' => 'jq_kod_pocztowy'
+                    'data-mask-placeholder' => '_'
                 ),
                 'label' => 'Kod pocztowy',
                 'required'    => false,
@@ -199,10 +173,9 @@ class UserInfoType extends AbstractType{
                     )
                 ),
               ))
-            ->add('miasto_zamieszkania', 'text', array(
+            ->add('miasto_zameldowania', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 370px; display: inline-block;',
-                    'class' => 'jq_miasto'
+                    'style' => 'width: 370px; display: inline-block;'
                 ),
                 'label' => 'Miasto',
                 'required'    => false,
@@ -213,23 +186,9 @@ class UserInfoType extends AbstractType{
                     )
                 ),
               ))
-            ->add('miejscowosc_zamieszkania', 'text', array(
+            ->add('ulica_zameldowania', 'text', array(
                 'attr' => array(
-                    'class' => 'jq_miejscowosc'
-                ),
-                'label' => 'Miejscowość',
-                'required'    => false,
-                'constraints' => array(
-                    new Assert\Length(array(
-                         'max' => 64,
-                        )
-                    )
-                ),
-              ))
-            ->add('ulica_zamieszkania', 'text', array(
-                'attr' => array(
-                    'style' => 'width: 350px; display: inline-block;',
-                    'class' => 'jq_ulica'
+                    'style' => 'width: 350px; display: inline-block;'
                 ),
                 'label' => 'Ulica',
                 'required'    => false,
@@ -240,10 +199,9 @@ class UserInfoType extends AbstractType{
                     )
                 ),
               ))
-                ->add('nr_domu_zamieszkania', 'text', array(
+                ->add('nr_domu_zameldowania', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 50px; display: inline-block;',
-                    'class' => 'jq_nr_domu'
+                    'style' => 'width: 50px; display: inline-block;'
                 ),
                 'label' => 'Numer domu',
                 'required'    => false,
@@ -254,10 +212,9 @@ class UserInfoType extends AbstractType{
                     )
                 ),
               ))
-            ->add('nr_lokalu_zamieszkania', 'text', array(
+            ->add('nr_lokalu_zameldowania', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 50px; display: inline-block;',
-                    'class' => 'jq_nr_lokalu'
+                    'style' => 'width: 50px; display: inline-block;'
                 ),
                 'label' => 'Numer lokalu',
                 'required'    => false,
@@ -272,10 +229,9 @@ class UserInfoType extends AbstractType{
             // START korespondencji 
             ->add('kod_pocztowy_korespondencji', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 90px; display: inline-block; text-align: center;',
+                    'style' => 'width: 90px; display: inline-block;',
                     'data-mask' => '99-999',
-                    'data-mask-placeholder' => '_',
-                    'class' => 'jq_kod_pocztowy'
+                    'data-mask-placeholder' => '_'
                 ),
                 'label' => 'Kod pocztowy',
                 'required'    => false,
@@ -288,8 +244,7 @@ class UserInfoType extends AbstractType{
               ))
             ->add('miasto_korespondencji', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 370px; display: inline-block;',
-                    'class' => 'jq_miasto'
+                    'style' => 'width: 370px; display: inline-block;'
                 ),
                 'label' => 'Miasto',
                 'required'    => false,
@@ -300,23 +255,9 @@ class UserInfoType extends AbstractType{
                     )
                 ),
               ))
-             ->add('miejscowosc_korespondencji', 'text', array(
-                'attr' => array(
-                    'class' => 'jq_miejscowosc'
-                ),
-                'label' => 'Miejscowość',
-                'required'    => false,
-                'constraints' => array(
-                    new Assert\Length(array(
-                         'max' => 64,
-                        )
-                    )
-                ),
-              ))
             ->add('ulica_korespondencji', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 350px; display: inline-block;',
-                    'class' => 'jq_ulica'
+                    'style' => 'width: 350px; display: inline-block;'
                 ),
                 'label' => 'Ulica',
                 'required'    => false,
@@ -329,8 +270,7 @@ class UserInfoType extends AbstractType{
               ))
                 ->add('nr_domu_korespondencji', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 50px; display: inline-block;',
-                    'class' => 'jq_nr_domu'
+                    'style' => 'width: 50px; display: inline-block;'
                 ),
                 'label' => 'Numer domu',
                 'required'    => false,
@@ -343,8 +283,7 @@ class UserInfoType extends AbstractType{
               ))
             ->add('nr_lokalu_korespondencji', 'text', array(
                 'attr' => array(
-                    'style' => 'width: 50px; display: inline-block;',
-                    'class' => 'jq_nr_lokalu'
+                    'style' => 'width: 50px; display: inline-block;'
                 ),
                 'label' => 'Numer lokalu',
                 'required'    => false,
@@ -361,45 +300,49 @@ class UserInfoType extends AbstractType{
                 'label' => 'Miejsce urodzenia',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
                     )
                 ),
               ))
-                
-            ->add('data_wydania_dowodu', 'date', array(
-                'label' => 'Data wydania dowodu osobistego',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                'attr' => array(
-                    'class' => 'datepicker'
-                ),
+            ->add('wzrost', 'text', array(
+                'label' => 'Wzrost',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
-                    new Assert\Date()
+                    new Assert\Length(array(
+                         'max' => 16,
+                        )
+                    )
                 ),
               ))
-            ->add('data_waznosci_dowodu', 'date', array(
-                'label' => 'Data ważnosci dowodu osobistego',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+            ->add('kolor_oczow', 'text', array(
+                'label' => 'Kolor oczów',
+                'required'    => false,
+                'constraints' => array(
+                    new Assert\Length(array(
+                         'max' => 16,
+                        )
+                    )
+                ),
+              ))
+            ->add('data_wydania_dowodu', 'text', array(
+                'label' => 'Data wydania dowodu osobistego',
                 'attr' => array(
                     'class' => 'datepicker'
                 ),
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
-                    new Assert\Date()
+                    new Assert\Length(array(
+                         'max' => 16,
+                        )
+                    )
                 ),
               ))
             ->add('organizacja_wydajaca_dowodu', 'text', array(
                 'label' => 'Organizacja wydająca dowód osobity',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 64,
                         )
@@ -414,14 +357,13 @@ class UserInfoType extends AbstractType{
                 ),
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 16,
                         )
                     )
                 ),
               ))
-            ->add('nr_dowodu', 'text', array(
+            ->add('numer_dodowu', 'text', array(
                 'attr' => array(
                     'data-mask' => 'aaa999999',
                     'data-mask-placeholder' => '_'
@@ -429,7 +371,6 @@ class UserInfoType extends AbstractType{
                 'label' => 'Numer dowodu',
                 'required'    => false,
                 'constraints' => array(
-                    new Assert\NotBlank(),
                     new Assert\Length(array(
                          'max' => 16,
                         )
@@ -437,17 +378,11 @@ class UserInfoType extends AbstractType{
                 ),
               ))
             ->add('submit', 'submit', array(
-                'attr' => array(
-                    'class' => 'dim btn-danger btn'
-                ),
-                'label' => '<i class="fa fa-save"></i>&nbsp;&nbsp; Zapisz dane'
+                'label' => 'Zapisz dane'
             ));
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
-        $resolver->setDefaults(array(
-            'data_class' => 'Rexi\UserBundle\Entity\UserInfo'
-        ));
     }
     
 }

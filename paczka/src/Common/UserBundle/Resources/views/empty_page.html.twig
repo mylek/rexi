@@ -15,16 +15,11 @@
 </head>
 <body class="gray-bg">
     
-    <div class="middle-box text-center wycenyscreen animated fadeInDown">
+    <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
                 <h1 class="logo-rexi"></h1>
             </div>
-            {% for type,messages in app.session.flashbag.all() %}
-                {% for msg in messages %}
-                <div class="alert alert-{{ type }}">{{ msg }}</div>
-                {% endfor %}
-            {% endfor %}
             {% block pageContainer %}{% endblock %}
         </div>
     </div>
