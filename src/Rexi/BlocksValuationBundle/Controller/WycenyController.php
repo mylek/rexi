@@ -63,7 +63,7 @@ class WycenyController extends Controller
      * )
      * @Template()
      */
-    public function uzupelnijInwestycje(Request $Request) {
+    public function uzupelnijInwestycjeAction(Request $Request) {
         
         // pobranie encji uzytkownika
         $User = $this->getUser();

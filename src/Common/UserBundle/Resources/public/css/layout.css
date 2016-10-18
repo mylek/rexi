@@ -80,3 +80,6 @@ fieldset legend {
 .wycenyscreen .hr-line-dashed {
     margin: 10px 0;
 }
+.wycenyscreen footer {
+    margin-top: 20px;
+}
