@@ -2,6 +2,8 @@
 {% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
 {% import 'RexiBlocksValuationBundle::macros.html.twig' as macros_bloki %}
 
+{% block title %}Lista bloków{% endblock %}
+
 {% set blok %}
     {% if bloki_wycen is not empty %}
         <div class="tree bloki_wycen_drzewo">

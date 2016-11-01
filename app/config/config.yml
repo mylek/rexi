@@ -86,3 +86,5 @@ twig:
 knp_paginator:
     template:
         sortable: RexiDashBoardBundle:Pagination:sortable_link.html.twig
+
+white_october_breadcrumbs: ~

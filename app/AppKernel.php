@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Rexi\UserBundle\RexiUserBundle(),
             new Rexi\DashBoardBundle\RexiDashBoardBundle(),
             new Rexi\BlocksValuationBundle\RexiBlocksValuationBundle(),
+            new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

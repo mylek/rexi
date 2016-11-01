@@ -59,6 +59,13 @@ table th a.sorting_desc{
 .user-form-avatar section label {
     width: 500px;
 }
+.breadcrumb li:before{
+    content: "" !important;
+    padding: 0!important;
+}
+.breadcrumb li span {
+    margin: 0px 2px;
+}
 
 @media(max-width: 7650px) {
     .user-tab-filters .col-md-2 {

@@ -2,7 +2,8 @@
 
 namespace Rexi\BlocksValuationBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Rexi\DashBoardBundle\Controller\CoreController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,8 +14,14 @@ use Rexi\BlocksValuationBundle\Entity\BlokiWycenProdukt;
 /**
  * @Route("/panel/bloki")
  */
-class DefaultController extends Controller
+class DefaultController extends CoreController
 {
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->breadcrumbs->addItem("Lista bloków", $this->get("router")->generate("rexi_bloki_wycen_list"));
+    }
+    
     /**
      * @Route(
      *      "/",
@@ -41,6 +48,7 @@ class DefaultController extends Controller
      */
     public function dodajAction(Request $Request)
     {
+        $this->breadcrumbs->addItem("Dodaj blok");
         $BlockiWycen = new BlockiWycen();
         $addBlockForm = $this->createForm(new BlockType());
         $addBlockForm->get('typ')->setData(0);
@@ -105,6 +113,7 @@ class DefaultController extends Controller
      * @Template
      */
     public function aktualizujAction(Request $Request, $id){
+        $this->breadcrumbs->addItem("Edytuj blok");
         $Repo = $this->getDoctrine()->getRepository('RexiBlocksValuationBundle:BlockiWycen');
         $blok = $Repo->find($id);
         $produkty = array();

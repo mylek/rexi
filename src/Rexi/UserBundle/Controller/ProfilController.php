@@ -1,7 +1,8 @@
 <?php
 namespace Rexi\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Rexi\DashBoardBundle\Controller\CoreController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,8 +12,14 @@ use Rexi\UserBundle\Form\Type\ChangePasswordType;
 /**
  * @Route("/panel/profil")
  */
-class ProfilController extends Controller
-{
+class ProfilController extends CoreController {
+    
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->breadcrumbs->addItem("Profil", $this->get("router")->generate("rexi_user_profil"));
+    }
+    
     /**
      * @Route(
      * "/",

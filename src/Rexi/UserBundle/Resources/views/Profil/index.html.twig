@@ -1,6 +1,8 @@
 {% extends "RexiDashBoardBundle::base.html.twig" %}
 {% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
 
+{% block title %}Profil użytkownika{% endblock %}
+
 {% set blok %}
     <div class="avatar-row">
         <img src="{{ asset(app.user.avatar) }}" class="online" alt="">

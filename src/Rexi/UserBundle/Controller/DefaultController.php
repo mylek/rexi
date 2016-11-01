@@ -2,7 +2,8 @@
 
 namespace Rexi\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Rexi\DashBoardBundle\Controller\CoreController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,9 +15,15 @@ use Rexi\UserBundle\Entity\UserInfo;
 /**
  * @Route("/panel/user")
  */
-class DefaultController extends Controller
+class DefaultController extends CoreController
 {
     protected $limit = 10;
+    
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->breadcrumbs->addItem("Użytkownicy", $this->get("router")->generate("rexi_user_list"));
+    }
     
     /**
      * @Route(
@@ -60,13 +67,14 @@ class DefaultController extends Controller
      * @Template
      */
     public function aktualizujAction(Request $Request, $id){
+        $this->breadcrumbs->addItem("Edycja użytkownika");
         $Repo = $this->getDoctrine()->getRepository('CommonUserBundle:User');
         $Repo2 = $this->getDoctrine()->getRepository('RexiUserBundle:UserInfo');
         $user = $Repo->find($id);
-        $userInfo = $Repo2->findBy(array('id_user' => $id))[0];
         if(NULL == $user){
             throw $this->createNotFoundException('Nie znaleziono takiego użytkownika');
         }
+        $userInfo = $Repo2->findBy(array('id_user' => $id))[0];
         
         $registerUserForm = $this->createForm(new RegisterUserType()/*, $User*/);
         $registerUserForm->get('email')->setData($user->getEmail());
@@ -143,6 +151,7 @@ class DefaultController extends Controller
      */
     public function dodajAction(Request $Request)
     {
+        $this->breadcrumbs->addItem("Dodaj użytkownika");
         $User = new User();
         $UserInfo = new UserInfo();
         $registerUserForm = $this->createForm(new RegisterUserType()/*, $User*/);
