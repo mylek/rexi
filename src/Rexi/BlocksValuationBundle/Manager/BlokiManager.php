@@ -57,7 +57,9 @@ class BlokiManager {
         
     }
     
-    private function pobierzDzieci() {
-        
+    public function pobierzDzieci($id_root = '') {
+        $Repo = $this->doctrine->getRepository('RexiBlocksValuationBundle:BlockiWycen');
+        $bloki = $Repo->findBy(array('id_rodzica' => $id_root));
+        return $bloki;
     }
 }

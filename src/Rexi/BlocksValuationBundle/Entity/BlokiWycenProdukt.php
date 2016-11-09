@@ -18,11 +18,6 @@ class BlokiWycenProdukt {
     private $id;
     
     /**
-     * @ORM\Column(type="string", length = 128)
-    */
-    private $nazwa;
-    
-    /**
      * @ORM\Column(name="data_dodania", type="datetime", nullable=true)
      */
     private $data_dodania;
@@ -36,6 +31,11 @@ class BlokiWycenProdukt {
      * @ORM\Column(type="float", scale=2)
     */
     private $cena_klienta;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $rabat = 0;
     
     /**
      * @ORM\ManyToOne(
@@ -181,5 +181,28 @@ class BlokiWycenProdukt {
     public function getBlok()
     {
         return $this->blok;
+    }
+
+    /**
+     * Set rabat
+     *
+     * @param integer $rabat
+     * @return BlokiWycenProdukt
+     */
+    public function setRabat($rabat)
+    {
+        $this->rabat = $rabat;
+
+        return $this;
+    }
+
+    /**
+     * Get rabat
+     *
+     * @return integer 
+     */
+    public function getRabat()
+    {
+        return $this->rabat;
     }
 }

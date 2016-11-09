@@ -76,13 +76,13 @@ class DefaultController extends CoreController
                     $em->persist($BlockiWycen);
                     $em->flush();
                     
-                    if($postData['addBlok']['typ'] == 1 && !empty($postData['p_nazwa'])) {
-                        foreach($postData['p_nazwa'] as $key => $nazwa) {
+                    if($postData['addBlok']['typ'] == 1 && !empty($postData['p_cena'])) {
+                        foreach($postData['p_cena'] as $key => $nazwa) {
                             if(!empty($postData['p_cena_klienta'][$key]) && !empty($postData['p_cena'][$key])) {
                                 $BlockiWycenProdukt = new BlokiWycenProdukt();
-                                $BlockiWycenProdukt->setNazwa($postData['p_nazwa'][$key]);
                                 $BlockiWycenProdukt->setCena($postData['p_cena'][$key]);
                                 $BlockiWycenProdukt->setCenaKlienta($postData['p_cena_klienta'][$key]);
+                                $BlockiWycenProdukt->setRabat($postData['p_rabat'][$key]);
                                 $BlockiWycenProdukt->setBlok($BlockiWycen);
                                 $em->persist($BlockiWycenProdukt);
                                 $em->flush();
@@ -135,6 +135,7 @@ class DefaultController extends CoreController
             $produkty = $blok->getProdukty();
         }
         
+        
         if($Request->isMethod('POST')){
             $Session = $this->get('session');
             
@@ -155,13 +156,13 @@ class DefaultController extends CoreController
                     $em->remove($produkt);
                 }
                 
-                if($postData['addBlok']['typ'] == 1 && !empty($postData['p_nazwa'])) {
-                    foreach($postData['p_nazwa'] as $key => $nazwa) {
+                if($postData['addBlok']['typ'] == 1 && !empty($postData['p_cena'])) {
+                    foreach($postData['p_cena'] as $key => $nazwa) {
                         if(!empty($postData['p_cena_klienta'][$key]) && !empty($postData['p_cena'][$key])) {
                             $BlockiWycenProdukt = new BlokiWycenProdukt();
-                            $BlockiWycenProdukt->setNazwa($postData['p_nazwa'][$key]);
                             $BlockiWycenProdukt->setCena($postData['p_cena'][$key]);
                             $BlockiWycenProdukt->setCenaKlienta($postData['p_cena_klienta'][$key]);
+                            $BlockiWycenProdukt->setRabat($postData['p_rabat'][$key]);
                             $BlockiWycenProdukt->setBlok($blok);
                             $em->persist($BlockiWycenProdukt);
                             $em->flush();
@@ -179,7 +180,7 @@ class DefaultController extends CoreController
         
         return array(
             'form' => $addBlockForm->createView(),
-            'produkty' => $produkty
+            'produkt' => reset($produkty)
         );
     }
 }

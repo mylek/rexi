@@ -16,7 +16,44 @@ use Symfony\Component\HttpFoundation\Response;
  * @Route("/wyceny")
  */
 class WycenyController extends Controller
-{
+{    
+    /**
+     * @Route(
+     *      "/",
+     *      name = "rexi_wycen_routing",
+     * )
+     */
+    public function routingAction()
+    {
+        $User = $this->getUser();
+        $Repo = $this->getDoctrine()->getRepository('RexiBlocksValuationBundle:Inwestycje');
+        $inwestycje = $Repo->getInwestycjaOtwarteUser($User->getId());
+        
+        if(!empty($inwestycje)){
+            return $this->redirect($this->generateUrl('rexi_wyceny_bloki'));
+        } else {
+            return $this->redirect($this->generateUrl('rexi_wycen_uzupelnij'));
+        }
+        
+    }
+    
+    /**
+     * @Route(
+     *      "/bloki/{id}",
+     *      name = "rexi_wyceny_bloki",
+     *      defaults = {"id" = ""}
+     * )
+     * @Template()
+     */
+    public function blokiAction($id)
+    {
+        $blokiManager = $this->get('bloki_manager');
+        $bloki = $blokiManager->pobierzDzieci($id);
+        return array(
+            'bloki' => $bloki
+        );
+    }
+    
     /**
      * @Route(
      *      "/uzupelnij",
@@ -27,7 +64,6 @@ class WycenyController extends Controller
     public function uzupelnijDaneAction(Request $Request)
     {
         $User = $this->getUser();
-        
         $Repo = $this->getDoctrine()->getRepository('RexiUserBundle:UserInfo');
         $userInfo = $Repo->findBy(array('id_user' => $User->getId()))[0];
         

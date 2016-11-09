@@ -47,34 +47,23 @@
                     </label>
                 </section>
             </fieldset>
-                <!--<table class="table table-bordered tabela-wycen" id="jq-tabela-wycen-produkty" style="width: 50%; margin: 20px auto; display: none;">
+                <table class="table table-bordered tabela-wycen" id="jq-tabela-wycen-produkty" style="width: 50%; margin: 20px auto; display: none;">
                     <thead>
                         <tr>
-                            <th width="40%">Dokumenty</th>
-                            <th width="35%">Cena dla klienta</th>
-                            <th width="15%">Koszt</th>
-                            <th style="text-align: center;" width="10%">Usuń</th>
+                            <th width="40%">Cena dla klienta (PLN)</th>
+                            <th width="40%">Koszt (PLN)</th>
+                            <th width="20%">Możliwy rabat (%)</th>
                         </tr>
                     </thead>
                     <tbody>
-			<tr>
-                            <td><label class="input"><input type="text" name="p_nazwa[]" /><label></td>
+                        <tr class="jq-base-row">
                             <td><label class="input"><input class="numeric" type="text" name="p_cena_klienta[]" /><label></td>
                             <td><label class="input"><input class="numeric" type="text" name="p_cena[]" /><label></td>
-                            <td align="center"><a class="btn btn-danger jq-wyceny-usun-wiersz" href="javascript:void(0);"><i class="glyphicon glyphicon-trash"></i></a></td>
-                        </tr>
-			<tr class="jq-base-row">
-                            <td><label class="input"><input type="text" name="p_nazwa[]" /><label></td>
-                            <td><label class="input"><input class="numeric" type="text" name="p_cena_klienta[]" /><label></td>
-                            <td><label class="input"><input class="numeric" type="text" name="p_cena[]" /><label></td>
-                            <td class="jq-wyceny-usun" align="center"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" align="right"><a class="btn btn-primary" id="jq-wyceny-dodaj-produkt" href="javascript:void(0);">Dodaj kolejny wiersz</a></td>
+                            <td><input class="form-control spinner spinner-both" style="padding: 0 30px;" id="jq-rabat" name="p_rabat[]" value="0"></td>
                         </tr>
                     <tbody>
                     </tbody>
-                </table> -->
+                </table>
             <footer>
                 {{ form_widget(form.submit) }}
             </footer>
@@ -97,19 +86,13 @@
                     $(this).css('background-color', ev.color.toHex());
                 }
             );
-            
-            $('#jq-wyceny-dodaj-produkt').on('click', function(){
-                var base = $('.jq-base-row');
-                var row = base.clone();
-                var usun_btn = $('<a class="btn btn-danger jq-wyceny-usun-wiersz" href="javascript:void(0);"><i class="glyphicon glyphicon-trash"></i></a>');
-                row.find('.jq-wyceny-usun').append(usun_btn);
-                row.removeClass('jq-base-row');
-                base.before(row)
-            });
-            
-            $(document).on('click', '.jq-wyceny-usun-wiersz', function(){
-                $(this).parent().parent().remove();
-                return false;
+    
+            $("#jq-rabat").spinner({
+                min: 0,
+                max: 100,
+                step: 1,
+                start: 0,
+                numberFormat: "C"
             });
             
             $('#addBlok_typ input').on('click', function(){

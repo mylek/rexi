@@ -1,0 +1,22 @@
+{% extends "RexiBlocksValuationBundle::empty_page.html.twig" %}
+{% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
+
+{% block pageContainer %}
+    <h3>Witamy w systemie Rexi</h3>
+    <p>Wybierz elementy pasujące do Twojego projektu</p>
+    <div class="bloki_wycen_con">
+    {% for blok in bloki %}        
+        {% if blok.typ == 1 %}
+            <button type="button" class="btn btn-lg" 
+            style="background-color: {{ blok.kolor }}; box-shadow: inset 0px 0px 0px {{ blok.kolor }}, 0px 5px 0px 0px {{ blok.kolor }}, 0px 10px 5px #999999;"        
+            data-toggle="modal" data-target="#wycena_{{blok.id}}">{{ blok.nazwa }}</button>
+            {% set tresc = 'Cena tej usługi wynosi: ' ~ blok.produkty|first.cenaKlienta ~ ' PLN' %}
+            {{ macros.modal('wycena_'~blok.id, 'Wycena: ' ~ blok.nazwa, tresc, 'Tak', 'Nie', path('rexi_wyceny_bloki')) }}
+        {% else %}
+           <a href="{{ path('rexi_wyceny_bloki', {'id': blok.id}) }}" 
+           style="background-color: {{ blok.kolor }}; box-shadow: inset 0px 0px 0px {{ blok.kolor }}, 0px 5px 0px 0px {{ blok.kolor }}, 0px 10px 5px #999999;"
+           class="btn btn-lg">{{ blok.nazwa }}</a>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endblock %}

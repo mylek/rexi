@@ -1,0 +1,76 @@
+{% extends "RexiDashBoardBundle::base.html.twig" %}
+{% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
+
+{% block title %}Wyceny{% endblock %}
+
+{% set blok %}
+    <div class="projekty-tab-con">
+        <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+            <thead>			                
+                <tr>
+                    <th>ID</th>
+                    <th>Imię i nazwisko</th>
+                    <th>Adres</th>
+                    <th>Login</th>
+                    <th>E-mail</th>
+                    <th>Edycja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for projekt in projekty %}
+                    <tr>
+                        <td>{{ projekt.id }}</td>
+                        <td>{{ projekt.imie_nazwisko }}</td>
+                        <td>{{ projekt.adres }}</td>
+                        <td>{{ projekt.username }}</td>
+                        <td>{{ projekt.email }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="{{ path('rexi_wyceny_szczegoly', {'id': projekt.id}) }}"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger btn-xs projekty-delete" href="{{ path('rexi_delete_wycena', {'id': projekt.id}) }}"><i class="glyphicon glyphicon-remove"></i></a>
+                        </td>
+                    </tr> 
+                {% else %}
+                    <tr>
+                        <td colspan="4">Brak projektów</td>
+                    </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="dt-toolbar-footer">
+        <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="dataTables_paginate paging_simple_numbers" id="dt_basic_paginate">
+                {{ knp_pagination_render(projekty, 'RexiDashBoardBundle:Pagination:pagination.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endset %}
+
+{% block scriptsJS %}
+    <script>
+        $(document).ready(function(){
+            $(".projekty-delete").click(function(e) {
+                var _this = $(this);
+                $.SmartMessageBox({
+                        title : "Usuń wycene",
+                        content : "Czy na pewno chcesz usunać tą wycene?",
+                        buttons : '[Nie][Tak]'
+                }, function(ButtonPressed) {
+                        if (ButtonPressed === "Tak") {
+                            location.href = _this.attr('href');
+                        }
+                        if (ButtonPressed === "Nie") {
+                        }
+
+                });
+                
+                e.preventDefault();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block pageContainer %}
+    {{ macros.widgetBlock('Wyceny', 'Lista inwestycji', blok) }}
+{% endblock %}

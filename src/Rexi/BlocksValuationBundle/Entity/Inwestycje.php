@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+* @ORM\Entity(repositoryClass="Rexi\BlocksValuationBundle\Repository\InwestycjeRepository")
  * @ORM\Table(name="inwestycje")
  */
 
@@ -68,6 +69,11 @@ class Inwestycje {
      * @ORM\Column(name="data_dodania", type="datetime")
      */
     private $data_dodania;
+    
+    /**
+    * @ORM\Column(type="boolean", options={"default": false})
+    */
+   protected $zakonczone;
     
     public function __construct() {
         $this->data_dodania = new \DateTime();
@@ -241,7 +247,7 @@ class Inwestycje {
      */
     public function getInwestorzy()
     {
-        return $this->inwestorzy;
+        return unserialize($this->inwestorzy);
     }
 
     /**
@@ -311,5 +317,28 @@ class Inwestycje {
     public function getKodPocztowy()
     {
         return $this->kod_pocztowy;
+    }
+
+    /**
+     * Set zakonczone
+     *
+     * @param boolean $zakonczone
+     * @return Inwestycje
+     */
+    public function setZakonczone($zakonczone)
+    {
+        $this->zakonczone = $zakonczone;
+
+        return $this;
+    }
+
+    /**
+     * Get zakonczone
+     *
+     * @return boolean 
+     */
+    public function getZakonczone()
+    {
+        return $this->zakonczone;
     }
 }

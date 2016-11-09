@@ -60,6 +60,12 @@ class RexiExtension extends \Twig_Extension {
                     'Lista bloków' => 'rexi_bloki_wycen_list',
                     'Dodaj blok' => 'rexi_bloki_wycen_add'
                 )
+            ),
+            'Wycen' => array(
+                'class' => 'fa fa-home',
+                'submenu' => array(
+                    'Wyceny' => 'rexi_wyceny_projekty'
+                )
             )
         );
 

@@ -242,7 +242,7 @@ class DefaultController extends CoreController
         $em->remove($User);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('success', 'Poprawnie usuniÄ™to post wraz ze wszystkimi komentarzami');
+        $this->get('session')->getFlashBag()->add('success', 'Poprawnie usunięto użytkownika');
         return $this->redirect($this->generateUrl('rexi_user_list'));
     }
 }

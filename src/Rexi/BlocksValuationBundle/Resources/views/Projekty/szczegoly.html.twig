@@ -1,0 +1,150 @@
+{% extends "RexiDashBoardBundle::base.html.twig" %}
+{% import 'RexiDashBoardBundle::macros.html.twig' as macros %}
+
+{% block title %}Wyceny{% endblock %}
+
+{% set blok_dowod %}
+    <div class="smart-form">
+        <fieldset>
+            {{ macros.infoRow('Imie', user_info.imie) }}
+            {{ macros.infoRow('Drugie imie', user_info.imieDrugie) }}
+            {{ macros.infoRow('Nazwisko', user_info.nazwisko) }}
+            {{ macros.infoRow('PESEL', user_info.pesel) }}
+            {{ macros.infoRow('Nr dowodu', user_info.nrDowodu) }}
+            {{ macros.infoRow('Imie ojca', user_info.imieOjca) }}
+            {{ macros.infoRow('Imie matki', user_info.imieMatki) }}
+            {{ macros.infoRow('Data urodzenia', user_info.dataUrodzenia|date("m/d/Y")) }}
+            {% set plec = 'mężczyzna' %}
+            {% if(user_info.plec == 0) %} {% set plec = 'kobieta' %} {% endif %}
+            {{ macros.infoRow('Płeć',  plec) }}
+            
+            {{ macros.infoRow('Miasto', user_info.miasto) }}
+            {{ macros.infoRow('Kod pocztowy', user_info.kodPocztowy) }}
+            {{ macros.infoRow('Miejscowość', user_info.miejscowosc) }}
+            {{ macros.infoRow('Ulica', user_info.ulica) }}
+            {{ macros.infoRow('Nr domu', user_info.nrDomu) }}
+            {{ macros.infoRow('Nr mieszkania', user_info.nrLokalu) }}
+        </fieldset>
+    </div>
+{% endset %}
+
+{% set blok_zamieszkania %}
+    <div class="smart-form">
+        <fieldset>            
+            {{ macros.infoRow('Miasto', user_info.miastoZamieszkania) }}
+            {{ macros.infoRow('Kod pocztowy', user_info.kodPocztowyZamieszkania) }}
+            {{ macros.infoRow('Miejscowość', user_info.miejscowoscZamieszkania) }}
+            {{ macros.infoRow('Ulica', user_info.ulicaZamieszkania) }}
+            {{ macros.infoRow('Nr domu', user_info.nrDomuZamieszkania) }}
+            {{ macros.infoRow('Nr mieszkania', user_info.nrLokaluZamieszkania) }}
+        </fieldset>
+    </div>
+{% endset %}
+
+{% set blok_korespondencji %}
+    <div class="smart-form">
+        <fieldset>            
+            {{ macros.infoRow('Miasto', user_info.miastoKorespondencji) }}
+            {{ macros.infoRow('Kod pocztowy', user_info.kodPocztowyKorespondencji) }}
+            {{ macros.infoRow('Miejscowość', user_info.miejscowoscKorespondencji) }}
+            {{ macros.infoRow('Ulica', user_info.ulicaKorespondencji) }}
+            {{ macros.infoRow('Nr domu', user_info.nrDomuKorespondencji) }}
+            {{ macros.infoRow('Nr mieszkania', user_info.nrLokaluKorespondencji) }}
+        </fieldset>
+    </div>
+{% endset %}
+
+{% set blok_inwestycja %}
+    <div class="smart-form">
+        <fieldset>            
+            {{ macros.infoRow('Miasto', wycena.miasto) }}
+            {{ macros.infoRow('Kod pocztowy', wycena.kodPocztowy) }}
+            {{ macros.infoRow('Miejscowość', wycena.miejscowosc) }}
+            {{ macros.infoRow('Ulica', wycena.ulica) }}
+            {{ macros.infoRow('Nr domu', wycena.nrDomu) }}
+            {{ macros.infoRow('Nr mieszkania', wycena.nrLokalu) }}
+            {{ macros.infoRow('Nr działki', wycena.nrDzialki) }}
+        </fieldset>
+    </div>
+{% endset %}
+
+{% set blok_inwestorzy %}
+    {% if inwestorzy is not empty %}
+        {% for inwestor in inwestorzy %}
+            <div class="smart-form">
+                <fieldset>
+                    <legend>Dane z dowodu:</legend>
+                    {{ macros.infoRow('Imie', inwestor.imie) }}
+                    {{ macros.infoRow('Drugie imie', inwestor.imie_drugie) }}
+                    {{ macros.infoRow('Nazwisko', inwestor.nazwisko) }}
+                    {{ macros.infoRow('PESEL', inwestor.pesel) }}
+                    {{ macros.infoRow('Nr dowodu', inwestor.nr_dowodu) }}
+                    {{ macros.infoRow('Imie ojca', inwestor.imie_ojca) }}
+                    {{ macros.infoRow('Imie matki', inwestor.imie_matki) }}
+                    {{ macros.infoRow('Data urodzenia', inwestor.data_urodzenia|date("m/d/Y")) }}
+                    {% if inwestor.plec is defined %}
+                        {% set plec = 'mężczyzna' %}
+                        {% if(inwestor.plec == 0) %} {% set plec = 'kobieta' %} {% endif %}
+                        {{ macros.infoRow('Płeć',  plec) }}
+                    {% endif %}
+
+                    {{ macros.infoRow('Miasto', inwestor.miasto) }}
+                    {{ macros.infoRow('Kod pocztowy', inwestor.kod_pocztowy) }}
+                    {{ macros.infoRow('Miejscowość', inwestor.miejscowosc) }}
+                    {{ macros.infoRow('Ulica', inwestor.ulica) }}
+                    {{ macros.infoRow('Nr domu', inwestor.nr_domu) }}
+                    {{ macros.infoRow('Nr mieszkania', inwestor.nr_lokalu) }}
+                </fieldset>
+                <fieldset>
+                    <legend>Adres zamieszkania:</legend>
+                    {{ macros.infoRow('Miasto', inwestor.miasto_zamieszkania) }}
+                    {{ macros.infoRow('Kod pocztowy', inwestor.kod_pocztowy_zamieszkania) }}
+                    {{ macros.infoRow('Miejscowość', inwestor.miejscowosc_zamieszkania) }}
+                    {{ macros.infoRow('Ulica', inwestor.ulica_zamieszkania) }}
+                    {{ macros.infoRow('Nr domu', inwestor.nr_domu_zamieszkania) }}
+                    {{ macros.infoRow('Nr mieszkania', inwestor.nr_lokalu_zamieszkania) }}
+                </fieldset>
+                <fieldset>
+                    <legend>Adres korespondencji:</legend>
+                    {{ macros.infoRow('Miasto', inwestor.miasto_korespondencji) }}
+                    {{ macros.infoRow('Kod pocztowy', inwestor.kod_pocztowy_korespondencji) }}
+                    {{ macros.infoRow('Miejscowość', inwestor.miejscowosc_korespondencji) }}
+                    {{ macros.infoRow('Ulica', inwestor.ulica_korespondencji) }}
+                    {{ macros.infoRow('Nr domu', inwestor.nr_domu_korespondencji) }}
+                    {{ macros.infoRow('Nr mieszkania', inwestor.nr_lokalu_korespondencji) }}
+                </fieldset>
+                    
+            </div>
+            <hr />
+        {% endfor %}
+    {% endif %}
+{% endset %}
+
+{% block pageContainer %}
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-a">Dane osobowe</a></li>
+            <li><a href="#tabs-b">Dane inwestycji</a></li>
+            <li><a href="#tabs-c">Wycena</a></li>
+        </ul>
+            <div id="tabs-a">
+                {{ macros.widgetBlock('Dane osobowe', 'Dane z dowodu', blok_dowod) }}
+                {{ macros.widgetBlock('', 'Adres zamieszkania', blok_zamieszkania) }}
+                {{ macros.widgetBlock('', 'Adres korespondencji', blok_korespondencji) }}
+            </div>
+            <div id="tabs-b">
+                {{ macros.widgetBlock('Dane inwestycji', 'Dane inwestycji', blok_inwestycja) }}
+                {{ macros.widgetBlock('', 'Dane inwestorów', blok_inwestorzy) }}
+            </div>
+            <div id="tabs-c">
+                <p>Wycena</p>
+            </div>
+    </div>
+{% endblock %}
+{% block scriptsJS %}
+<script>
+    $(document).ready(function(){
+        $('#tabs').tabs();
+    });
+</script>
+{% endblock %}

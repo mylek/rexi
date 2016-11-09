@@ -508,4 +508,60 @@ class User implements AdvancedUserInterface, \Serializable {
     protected function getUploadRootDir() {
         return __DIR__.'/../../../../web/'.User::UPLOAD_DIR;
     }
+
+    /**
+     * Set updateDate
+     *
+     * @param \DateTime $updateDate
+     * @return User
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
+    }
+
+    /**
+     * Add inwestycje
+     *
+     * @param \Rexi\BlocksValuationBundle\Entity\Inwestycje $inwestycje
+     * @return User
+     */
+    public function addInwestycje(\Rexi\BlocksValuationBundle\Entity\Inwestycje $inwestycje)
+    {
+        $this->inwestycje[] = $inwestycje;
+
+        return $this;
+    }
+
+    /**
+     * Remove inwestycje
+     *
+     * @param \Rexi\BlocksValuationBundle\Entity\Inwestycje $inwestycje
+     */
+    public function removeInwestycje(\Rexi\BlocksValuationBundle\Entity\Inwestycje $inwestycje)
+    {
+        $this->inwestycje->removeElement($inwestycje);
+    }
+
+    /**
+     * Get inwestycje
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInwestycje()
+    {
+        return $this->inwestycje;
+    }
 }
