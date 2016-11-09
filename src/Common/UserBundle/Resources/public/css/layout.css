@@ -84,11 +84,17 @@ fieldset legend {
     margin-top: 20px;
 }
 .bloki_wycen_con .btn {
+    position: relative;
     width: 350px;
-    color: #fff;
+    color: #000;
     font-weight: bold;
     margin-bottom: 20px;
     padding-top: 15px;
+}
+.bloki_wycen_con .btn  i {
+    position: absolute;
+    left: 15px;
+    top: 19px;
 }
 .bloki_wycen_con {
     margin-top: 25px;

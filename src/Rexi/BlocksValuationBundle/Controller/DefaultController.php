@@ -177,10 +177,13 @@ class DefaultController extends CoreController
                 return $this->redirect($this->generateUrl('rexi_bloki_wycen_list'));
             }
         }
+		$produkt = array();
+		if(!empty($produkty))
+			$produkt = $produkty{0};
         
         return array(
             'form' => $addBlockForm->createView(),
-            'produkt' => reset($produkty)
+            'produkt' => $produkt
         );
     }
 }
