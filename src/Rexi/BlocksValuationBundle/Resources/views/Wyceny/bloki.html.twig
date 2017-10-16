@@ -10,7 +10,7 @@
             <button type="button" class="btn btn-lg" 
             style="background-color: {{ blok.kolor }}; box-shadow: inset 0px 0px 0px {{ blok.kolor }}, 0px 5px 0px 0px {{ blok.kolor }}, 0px 10px 5px #999999;"        
             data-toggle="modal" data-target="#wycena_{{blok.id}}"><i class="fa fa-dollar"></i>{{ blok.nazwa }}</button>
-            {% set tresc = 'Cena tej usługi wynosi: ' ~ blok.produkty|first.cenaKlienta ~ ' PLN' %}
+            {% set tresc = 'Cena tej usługi wynosi: ' ~ blok.produkty|first.cenaKlienta ~ ' PLN <br /> Czy chcesz ją dodac do wyceny?' %}
             {{ macros.modal('wycena_'~blok.id, 'Wycena: ' ~ blok.nazwa, tresc, 'Tak', 'Nie', path('rexi_wyceny_bloki')) }}
         {% else %}
            <a href="{{ path('rexi_wyceny_bloki', {'id': blok.id}) }}" 

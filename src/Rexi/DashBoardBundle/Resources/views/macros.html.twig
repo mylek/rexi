@@ -52,7 +52,7 @@
                     <h4 class="modal-title">{{ title }}</h4>
                 </div>
                 <div class="modal-body">
-                    {{ content }}
+                    {{ content|raw }}
                 </div>
                 <form action="{{action}}" method="POST">
                     <div class="modal-footer">

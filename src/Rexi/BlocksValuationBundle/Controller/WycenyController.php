@@ -113,6 +113,7 @@ class WycenyController extends Controller
         $inwestycjeForm = $this->createForm(new InwestycjeType(), $inwestycje);
         $inwestycjeForm->handleRequest($Request);
         $postData = $Request->request->all();
+        $inwestycje->setZakonczone(0);
         
         $inwestorzy = array();
         $inwestorzyHtml = '';
@@ -175,6 +176,7 @@ class WycenyController extends Controller
                 $em->flush();
                 
                 $Session->getFlashBag()->add('success', 'Dane zostały zapisane');
+                return $this->redirect($this->generateUrl('rexi_wyceny_bloki'));
                 //return $this->redirect($this->generateUrl('rexi_wycen_uzupelnij_inwestycje'));
                 
             } else {
